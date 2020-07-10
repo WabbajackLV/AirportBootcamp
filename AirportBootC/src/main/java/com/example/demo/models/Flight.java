@@ -37,14 +37,31 @@ public class Flight {
 	@Column(name = "DepartureDate")
 	private Date departureDate;
 	
-	@Min(1)
-	@Max(24)
-	@Column(name = "Age")
+	
+	@Column(name = "FligthDuration")
 	private double flightDuration;
 	
+	@Column("PassengerCapacity")
 	private int passengerCapacity;
 	
+	@Min(0)
+	@Max(passengerCapacity)
+	@Column(name = "SeatsTaken")
 	private int seatsTaken;
+
+	public Flight(int f_ID, Airport airportFrom, Airport airportTo, BoardingPass boardingPass, Date departureDate,
+			double flightDuration, int passengerCapacity) {
+		super();
+		this.f_ID = f_ID;
+		this.airportFrom = airportFrom;
+		this.airportTo = airportTo;
+		this.boardingPass = boardingPass;
+		this.departureDate = departureDate;
+		this.flightDuration = flightDuration;
+		this.passengerCapacity = passengerCapacity;
+	}
+	
+	
 	
 	//TODO toString();
 	
