@@ -58,6 +58,10 @@ public class Flight{
 	private int vipSeatCounter = 1; 
 	private int regSeatCounter = 1;
 	
+	@Column(name = "Price")
+	@Min(0)
+	private double price;
+	
 	@Min(0)
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
@@ -66,29 +70,17 @@ public class Flight{
 	private Collection<BoardingPass> boardingPasses;
 
 	public Flight(Airport airportFrom, Airport airportTo,
-			Date departureDate, double flightDuration, int passengerCapacity) {
+			Date departureDate, double flightDuration, int passengerCapacity, double price) {
 		this.airportFrom = airportFrom;
 		this.airportTo = airportTo;
 		this.departureDate = departureDate;
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
+		this.price = price;
 		seatsTaken = 0;
 		
 	}
 
-
-
-	public Flight(int id, String code, Airport airportFrom, Airport airportTo,
-			Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
-			int passengerCapacity, @Min(0) int seatsTaken) {
-		this.airportFrom = airportFrom;
-		this.airportTo = airportTo;
-		this.allBoardingPasses = allBoardingPasses;
-		this.departureDate = departureDate;
-		this.flightDuration = flightDuration;
-		this.passengerCapacity = passengerCapacity;
-		this.seatsTaken = seatsTaken;
-	}
 	
 	public void takeOneVipSeat() {
 		vipSeatCounter++;

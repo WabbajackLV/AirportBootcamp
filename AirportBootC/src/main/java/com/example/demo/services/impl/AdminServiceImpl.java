@@ -30,7 +30,7 @@ public class AdminServiceImpl implements IAdminService {
 		throw new Exception("There is no Flight with this id in the system");
 	}
 	
-	
+	/*
 	@Override
 	public boolean insertFlight( Airport airportFrom, Airport airportTo, Date departureDate,
 			double flightDuration, int passengerCapacity) {
@@ -48,7 +48,9 @@ public class AdminServiceImpl implements IAdminService {
 		return true;
 		
 	}
+	*/
 	
+	/*
 	@Override
 	public boolean insertFlightByObject(Flight flight) {
 		for (Flight fl:allFlights)
@@ -63,6 +65,7 @@ public class AdminServiceImpl implements IAdminService {
 		allFlights.add(new Flight(flight.getAirportFrom(),flight.getAirportTo(),flight.getDepartureDate(),flight.getFlightDuration(),flight.getPassengerCapacity()));
 		return true;
 	}
+	*/
 
 	@Override
 	public boolean updateFlightById(int id,Airport airportFrom, Airport airportTo,Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
@@ -107,6 +110,19 @@ public class AdminServiceImpl implements IAdminService {
 	public void seeStatistics() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean insertFlightByObject(Flight flight) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,
+			int passengerCapacity) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

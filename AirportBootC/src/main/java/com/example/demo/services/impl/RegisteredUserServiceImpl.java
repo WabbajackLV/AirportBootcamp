@@ -2,10 +2,12 @@ package com.example.demo.services.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
@@ -39,7 +41,27 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		throw new Exception("There is no customer with specific id in the System");
 	}
 	
+	@Override 
+	public boolean bookFlight(int id, Flight flight) {
+		if(id > 0) {
+			if(regURepo.existsById(id)) {
+				RegisteredUser user = regURepo.findById(id).get();
+				if(bPassRepo.existsByFlightAndRegUser(flight, user)) {
+					return false;
+				}
+				BoardingPass newPass = new BoardingPass(flight, user);
+				bPassRepo.save(newPass);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	
+	
 
+	/*
 	@Override
 
 	public boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses, int id) throws Exception {
@@ -64,7 +86,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no registered user with specific id in the System");
 	}
-
+	*/
 	
 	@Override
 	public void getBoardingPass() {
