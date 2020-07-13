@@ -10,7 +10,7 @@ public interface IRegisteredUserService {
 
 	ArrayList<BoardingPass> getAllBookingsByRUId(int id) throws Exception;
 	
-	boolean bookFlight(Collection<Flight> purchasedFlights,int id )throws Exception;
+	boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses,int id )throws Exception;
 	
 	void getBoardingPass();
 }
