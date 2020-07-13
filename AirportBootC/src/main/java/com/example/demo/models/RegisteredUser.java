@@ -31,6 +31,6 @@ public class RegisteredUser extends Person{
 	@Column(name = "Points")
 	private int points;
 	
-	@Column(name = "AllFlights")
-	private ArrayList<BoardingPass> allFlights;
+	@Column(name = "AllBoardingPasses")
+	private ArrayList<BoardingPass> allBoardingPasses;
 }
