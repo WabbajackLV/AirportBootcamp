@@ -34,7 +34,7 @@ public class AirportServiceImpl implements IAirportService{
 	
 	
 	@Override
-	public boolean deleteByAirporCode(String airportCode) {
+	public boolean deleteByAirportCode(String airportCode) {
 		if(airRepo.existsByAirportCode(airportCode)) {
 			airRepo.deleteByAirportCode(airportCode);
 			return true;
