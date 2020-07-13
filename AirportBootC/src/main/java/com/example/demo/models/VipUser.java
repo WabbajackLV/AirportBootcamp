@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,15 +15,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "SeatTable")
 @Getter @Setter @NoArgsConstructor
-public class Seat {
+public class VipUser extends RegisteredUser{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "S_ID" )
-	private int s_ID;
-	
-	@Min(0)
-	private int seatNumber;
+	private int v_ID;
 	
 
 }
