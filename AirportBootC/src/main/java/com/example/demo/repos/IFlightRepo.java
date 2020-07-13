@@ -14,5 +14,6 @@ public interface IFlightRepo extends CrudRepository<Flight, Integer>{
 	ArrayList<Flight> findByRegisteredUser(RegisteredUser regU);
 	boolean existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacity(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity);
 	ArrayList<Flight> findAllByAirportFromAndDepartureDate(Airport airportFrom, Date departureDate);
+	ArrayList<Flight> findByAirportFromAndAirportTo(Airport airportFrom, Airport airportTo);
 
 }
