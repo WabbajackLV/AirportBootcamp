@@ -51,6 +51,12 @@ public class Flight{
 	@Column(name = "PassengerCapacity")
 	private int passengerCapacity;
 	
+	private int vipCapacity = passengerCapacity/3;
+	private int regularCapacity = passengerCapacity - vipCapacity;
+	
+	private int vipSeatCounter = 1; 
+	private int regSeatCounter = 1;
+	
 	@Min(0)
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
@@ -81,7 +87,14 @@ public class Flight{
 		this.passengerCapacity = passengerCapacity;
 		this.seatsTaken = seatsTaken;
 	}
-
+	
+	public void takeOneVipSeat() {
+		vipSeatCounter++;
+	}
+	
+	public void takeOneRegSeat() {
+		regSeatCounter++;
+	}
 
 
 	}

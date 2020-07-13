@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter	@Setter @NoArgsConstructor
 public class BoardingPass {
-	private String BoardingNr;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,11 +30,60 @@ public class BoardingPass {
 	@Column(name = "Seat")
 	private Seat seat;
 	
+	@Column(name = "Flight")
+	private Flight flight;
+	
 	@Column(name = "RegUser")
 	private RegisteredUser regUser;
 	
 	@Column(name = "Priority")
 	private boolean priority;
+	
+
+	public BoardingPass(double price, Flight flight, RegisteredUser regUser) {
+		super();
+		this.price = price;
+		this.flight = flight;
+		this.regUser = regUser;
+		this.priority = isRegUserAVip(regUser);
+		try {
+			seat = generateSeat(flight, regUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean isRegUserAVip(RegisteredUser user) {
+		if(user instanceof VipUser) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Seat generateSeat(Flight flight, RegisteredUser user) throws Exception {
+		if(user instanceof VipUser) {
+			int seatNumber = flight.getVipSeatCounter(); 
+			if(seatNumber <= flight.getVipCapacity()) {
+				Seat vipSeat = new Seat(seatNumber);
+				flight.takeOneVipSeat();
+				return vipSeat;
+			}else {
+				throw new Exception("All Vip seats taken");
+			}
+		}else {
+			int seatNumber = flight.getVipCapacity() + flight.getRegSeatCounter();
+			if(seatNumber <= flight.getPassengerCapacity()) {
+				Seat regularSeat = new Seat(seatNumber);
+				flight.takeOneRegSeat();
+				return regularSeat;
+			}else {
+				throw new Exception("All regular seats taken");
+			}
+		}
+		
+	}
+	
 	
 	
 	

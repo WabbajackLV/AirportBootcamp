@@ -23,8 +23,13 @@ public class Seat {
 	@Column(name = "S_ID" )
 	private int s_ID;
 	
-	@Min(0)
+	@Min(1)
 	private int seatNumber;
 	
-
+	public Seat(@Min(1) int seatNumber) {
+		super();
+		this.seatNumber = seatNumber;
+	}
+	
+	
 }

@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.example.demo.enums.Countries;
 
@@ -28,11 +30,23 @@ public class Airport {
 	@Column(name = "A_ID" )
 	public int a_ID;
 	
-	int counter = 1;
+	@Min(1)
+	@Max(99)
+	int number;
 	
 	
 	@Column(name = "AirportCode")
 	public String airportCode;
+	
+	
+	
+	public Airport(Countries country, int number) {
+		super();
+		this.country = country;
+		generateAirportCode();
+		airportCode += number;
+	}
+	
 	
 	
 	public void generateAirportCode() {
@@ -40,13 +54,12 @@ public class Airport {
 		for(int i = 0; i < 3; i++) {
 			code += getCountry().toString().charAt(i);
 		}
-		code += counter;
-		counter++;
 		airportCode = code;
 	}
-	
-	
-	
+
+
+
+
 	
 	
 	
