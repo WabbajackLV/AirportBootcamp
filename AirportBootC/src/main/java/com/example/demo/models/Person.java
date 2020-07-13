@@ -12,12 +12,12 @@ public class Person {
 
 	@Column(name="Name")
 	@Size(min = 3, max = 15)
-	@Pattern(regexp="[a-zA-Z\s]+$", message = "Only letters and spaces allowed")
+	@Pattern(regexp="[a-zA-Z\\s]+$", message = "Only letters and spaces allowed")
 	private String name;
 	
 	@Column(name="Surname")
 	@Size(min = 3, max = 15)
-	@Pattern(regexp="[a-zA-Z\s]+$", message = "Only letters and spaces allowed")
+	@Pattern(regexp="[a-zA-Z\\s]+$", message = "Only letters and spaces allowed")
 	private String surname;
 	
 	@Column(name="Age")
