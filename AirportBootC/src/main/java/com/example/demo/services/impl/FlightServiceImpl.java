@@ -6,13 +6,14 @@ import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.services.IFlightService;
-
+@Service
 public class FlightServiceImpl implements IFlightService{
 	
 	@Autowired

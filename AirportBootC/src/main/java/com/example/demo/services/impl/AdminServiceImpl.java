@@ -4,26 +4,30 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.repos.IAdminRepo;
 import com.example.demo.services.IAdminService;
 
 @Service
 public class AdminServiceImpl implements IAdminService {
 	
-	ArrayList<Flight> allFlights = new ArrayList<>();
+	@Autowired
+	IAdminRepo adminRepo;
+
 
 	@Override
 	public Flight selectFlightById(int id) throws Exception{
 		if(id > 0 )
 		{
-			for(int i=0;i<allFlights.size();i++)
+			for(int i=0;i<adminRepo.allFlights.size();i++)
 			{
-				if(allFlights.get(i).getF_ID() == id)
-					return allFlights.get(i);
+				if(adminRepo.allFlights.get(i).getF_ID() == id)
+					return adminRepo.allFlights.get(i);
 				
 			}
 		}
@@ -72,15 +76,15 @@ public class AdminServiceImpl implements IAdminService {
 			int passengerCapacity, int seatsTaken ) {
 		if(id > 0 )
 		{
-			for(int i=0;i<allFlights.size();i++)
+			for(int i=0;i<adminRepo.allFlights.size();i++)
 			{
-				if(allFlights.get(i).getF_ID() == id)
+				if(adminRepo.allFlights.get(i).getF_ID() == id)
 				{
-					allFlights.get(id).setAirportFrom(airportFrom);
-					allFlights.get(id).setAirportTo(airportTo);
-					allFlights.get(id).setDepartureDate(departureDate);
-					allFlights.get(id).setFlightDuration(flightDuration);
-					allFlights.get(id).setPassengerCapacity(passengerCapacity);
+					adminRepo.allFlights.get(id).setAirportFrom(airportFrom);
+					adminRepo.allFlights.get(id).setAirportTo(airportTo);
+					adminRepo.allFlights.get(id).setDepartureDate(departureDate);
+					adminRepo.allFlights.get(id).setFlightDuration(flightDuration);
+					adminRepo.allFlights.get(id).setPassengerCapacity(passengerCapacity);
 		
 					return true;
 				}
@@ -94,11 +98,11 @@ public class AdminServiceImpl implements IAdminService {
 	public boolean deleteFlightById(int id) {
 		if(id > 0 )
 		{
-			for(int i=0;i<allFlights.size();i++)
+			for(int i=0;i<adminRepo.allFlights.size();i++)
 			{
-				if(allFlights.get(i).getF_ID() == id)
+				if(adminRepo.allFlights.get(i).getF_ID() == id)
 				{
-					allFlights.remove(id);
+					adminRepo.allFlights.remove(id);
 					return true;
 				}
 			}

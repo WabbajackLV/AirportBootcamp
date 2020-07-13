@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,5 +36,5 @@ public class RegisteredUser extends Person{
 	@OneToMany(mappedBy="regUser")
 	//@Column(name = "AllBoardingPasses")
 
-	private ArrayList<BoardingPass> allBoardingPasses;
+	private Collection<BoardingPass> allBoardingPasses;
 }

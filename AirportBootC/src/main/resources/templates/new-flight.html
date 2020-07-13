@@ -17,6 +17,31 @@
 			<td th:if="${#fields.hasErrors('airportTo')}" th:errors="*{airportTo}"></td>
 			
 		</tr>
+		<tr>
+			<td>Please insert a Departure Date</td>
+			<td> <input type = "text"th:field="*{departureDate}"> </td>
+			<td th:if="${#fields.hasErrors('departureDate')}" th:errors="*{departureDate}"></td>
+			
+		</tr>
+		<tr>
+			<td>Please insert a Flight Duration</td>
+			<td> <input type = "text"th:field="*{flightDuration}"> </td>
+			<td th:if="${#fields.hasErrors('flightDuration')}" th:errors="*{flightDuration}"></td>
+			
+		</tr>
+		
+		<tr>
+			<td>Please insert a Flight passenger capacity</td>
+			<td> <input type = "text"th:field="*{passengerCapacity}"> </td>
+			<td th:if="${#fields.hasErrors('passengerCapacity')}" th:errors="*{passengerCapacity}"></td>
+			
+		</tr>
+		<tr>
+			<td>Please insert a Flight price</td>
+			<td> <input type = "text"th:field="*{price}"> </td>
+			<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+			
+		</tr>
 		
 		
 	</table>
