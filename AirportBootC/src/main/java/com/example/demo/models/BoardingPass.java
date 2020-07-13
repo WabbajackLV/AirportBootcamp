@@ -27,9 +27,10 @@ public class BoardingPass {
 	@Column(name = "B_ID")
 	private int b_ID;
 	
+	/*
 	@Column(name = "Price")
 	private double price;
-	
+	*/
 	
 	@ManyToOne
 	@JoinColumn(name = "RU_ID")
@@ -45,9 +46,8 @@ public class BoardingPass {
 	@JoinColumn(name="F_ID")
 	private Flight flight;
 	
-	public BoardingPass(double price, Flight flight, RegisteredUser regUser) {
+	public BoardingPass(Flight flight, RegisteredUser regUser) {
 		super();
-		this.price = price;
 		this.flight = flight;
 		this.regUser = regUser;
 		this.priority = isRegUserAVip(regUser);
@@ -58,6 +58,8 @@ public class BoardingPass {
 		}
 		
 	}
+	
+	
 	
 	public boolean isRegUserAVip(RegisteredUser user) {
 		if(user instanceof VipUser) {
@@ -88,8 +90,8 @@ public class BoardingPass {
 		}
 		
 	}
-	
-	
+
+
 	
 	
 }
