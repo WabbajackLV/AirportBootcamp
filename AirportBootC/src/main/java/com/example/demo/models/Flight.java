@@ -96,10 +96,6 @@ public class Flight{
 		regSeatCounter++;
 	}
 
-	
-	
-	//TODO toString();
-	
-	
-	
-}
+
+	}
+
