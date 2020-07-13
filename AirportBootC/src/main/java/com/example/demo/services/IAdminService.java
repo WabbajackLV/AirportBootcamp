@@ -19,4 +19,6 @@ public interface IAdminService {
 	boolean insertFlight(int id, Airport airportFrom, Airport airportTo, BoardingPass boardingPass,
 			Date departureDate, double flightDuration, int passengerCapacity);
 	
+	void seeStatistics();
+	
 }

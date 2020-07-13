@@ -83,4 +83,10 @@ public class AdminServiceImpl implements IAdminService {
 		}
 		return false;
 	}
+
+	@Override
+	public void seeStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
 }
