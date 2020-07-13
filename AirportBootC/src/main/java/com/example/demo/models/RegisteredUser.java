@@ -31,7 +31,7 @@ public class RegisteredUser extends Person{
 	@Min(0)
 	@Max(10000)
 	@Column(name = "Points")
-	private int points;
+	private double points;
 	
 	@OneToMany(mappedBy="regUser")
 	//@Column(name = "AllBoardingPasses")
