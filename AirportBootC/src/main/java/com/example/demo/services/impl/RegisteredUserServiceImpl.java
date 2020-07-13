@@ -11,6 +11,7 @@ import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
+import com.example.demo.models.VipUser;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
@@ -51,6 +52,13 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 				}
 				BoardingPass newPass = new BoardingPass(flight, user);
 				bPassRepo.save(newPass);
+				
+				user.setPoints(user.getPoints() + (flight.getPrice()/10));
+				if(user.getPoints() >= 1000) {
+					VipUser upgradeUser = new VipUser(user);
+					regURepo.save(upgradeUser);
+				}
+				
 				return true;
 			}
 			
@@ -93,6 +101,12 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		return false;
 		
 		
+	}
+
+	@Override
+	public boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses, int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

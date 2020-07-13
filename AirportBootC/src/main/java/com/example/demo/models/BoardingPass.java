@@ -27,11 +27,6 @@ public class BoardingPass {
 	@Column(name = "B_ID")
 	private int b_ID;
 	
-	/*
-	@Column(name = "Price")
-	private double price;
-	*/
-	
 	@ManyToOne
 	@JoinColumn(name = "RU_ID")
 	private RegisteredUser regUser;
