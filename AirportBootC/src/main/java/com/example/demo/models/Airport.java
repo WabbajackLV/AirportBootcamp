@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.example.demo.enums.Cities;
 import com.example.demo.enums.Countries;
 
 import lombok.AccessLevel;
@@ -23,24 +22,37 @@ public class Airport {
 	@Column(name = "Country")
 	public Countries country;
 	
-	@Column(name = "City")
-	public Cities city;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "A_ID" )
 	public int a_ID;
-	public String code;
+	
+	int counter = 1;
+	
+	
+	@Column(name = "AirportCode")
+	public String airportCode;
+	
+	
+	public void generateAirportCode() {
+		String code = "";
+		for(int i = 0; i < 3; i++) {
+			code += getCountry().toString().charAt(i);
+		}
+		code += counter;
+		counter++;
+		airportCode = code;
+	}
+	
+	
+	
+	
+	
+	
 	
 
-	public Airport(Countries country, Cities city, int id, String code) {
-		super();
-		this.country = country;
-		this.city = city;
-		this.a_ID = id;
-		this.code = code;
-	}
+
 	
 	
 }
