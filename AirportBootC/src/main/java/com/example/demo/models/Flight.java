@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor 
 @Table(name = "FlightTable")
 @Entity
-public class Flight {
+public class Flight extends Airport{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,11 +44,10 @@ public class Flight {
 	@Column(name = "FligthDuration")
 	private double flightDuration;
 	
-	@Column("PassengerCapacity")
+	@Column(name = "PassengerCapacity")
 	private int passengerCapacity;
 	
 	@Min(0)
-	@Max(passengerCapacity)
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
 
