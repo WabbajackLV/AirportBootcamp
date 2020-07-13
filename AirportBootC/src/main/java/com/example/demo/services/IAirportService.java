@@ -9,6 +9,6 @@ public interface IAirportService {
 
 	boolean insertNewAirportByObject(Airport airport);
 
-	boolean deleteByAirporCode(String airportCode);
+	boolean deleteByAirportCode(String airportCode);
 
 }
