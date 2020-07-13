@@ -25,6 +25,7 @@ public class Flight {
 	@Column(name = "F_ID" )
 	private int f_ID;
 	
+	
 	@Column(name = "AirportFrom")
 	private Airport airportFrom;
 	
@@ -60,8 +61,8 @@ public class Flight {
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
 	}
-	
-	
+
+
 	
 	//TODO toString();
 	
