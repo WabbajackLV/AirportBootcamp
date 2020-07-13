@@ -39,10 +39,6 @@ public class Person {
 	message = "Invalid e-mail adress")
 	private String email;
 
-	public Person()
-	{
-		
-	}
 	
 	public Person(
 			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z ]+$", message = "Only letters and spaces allowed") String name,
