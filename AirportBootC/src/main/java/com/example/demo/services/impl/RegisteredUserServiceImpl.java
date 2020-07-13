@@ -94,5 +94,11 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		
 	}
 
+	@Override
+	public boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses, int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
