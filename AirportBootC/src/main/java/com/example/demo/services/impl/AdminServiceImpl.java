@@ -66,7 +66,7 @@ public class AdminServiceImpl implements IAdminService {
 		return true;
 	}
 	*/
-
+	/*
 	@Override
 	public boolean updateFlightById(int id,Airport airportFrom, Airport airportTo,Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
 			int passengerCapacity, int seatsTaken ) {
@@ -89,6 +89,7 @@ public class AdminServiceImpl implements IAdminService {
 			
 		return false;
 	}
+	*/
 
 	@Override
 	public boolean deleteFlightById(int id) {
