@@ -31,8 +31,8 @@ public class BoardingPass {
 	private double price;
 	
 	
-	
-	@Column(name = "RegUser")
+	@ManyToOne
+	@JoinColumn(name = "RU_ID")
 	private RegisteredUser regUser;
 	
 	@Column(name = "Priority")

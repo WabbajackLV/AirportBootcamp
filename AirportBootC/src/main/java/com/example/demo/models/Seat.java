@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -27,7 +28,8 @@ public class Seat {
 	@Min(1)
 	private int seatNumber;
 	
-	@OneToOne(mappedBy="seat")
+	@OneToOne
+	@JoinColumn(name="B_ID")
 	private BoardingPass boardingPass;
 	
 	public Seat(@Min(1) int seatNumber) {
