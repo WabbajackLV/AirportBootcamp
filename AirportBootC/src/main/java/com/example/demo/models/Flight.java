@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +12,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+
+import com.example.demo.enums.Countries;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +23,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor 
 @Table(name = "FlightTable")
 @Entity
-public class Flight extends Airport{
+public class Flight{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +39,7 @@ public class Flight extends Airport{
 	private Airport airportTo;
 	
 	@Column(name = "BoardingPass")
-	private BoardingPass boardingPass;
+	private Collection<BoardingPass> allBoardingPasses;
 	
 	@Column(name = "DepartureDate")
 	private Date departureDate;
@@ -51,22 +55,34 @@ public class Flight extends Airport{
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
 
-	public Flight(int f_ID, Airport airportFrom, Airport airportTo, BoardingPass boardingPass, Date departureDate,
-			double flightDuration, int passengerCapacity) {
-		super();
-		this.f_ID = f_ID;
+	
+
+	public Flight(Airport airportFrom, Airport airportTo,
+			Date departureDate, double flightDuration, int passengerCapacity) {
 		this.airportFrom = airportFrom;
 		this.airportTo = airportTo;
-		this.boardingPass = boardingPass;
 		this.departureDate = departureDate;
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
+		seatsTaken = 0;
+		
 	}
 
 
-	
-	//TODO toString();
-	
-	
-	
-}
+
+	public Flight(int id, String code, Airport airportFrom, Airport airportTo,
+			Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
+			int passengerCapacity, @Min(0) int seatsTaken) {
+		this.airportFrom = airportFrom;
+		this.airportTo = airportTo;
+		this.allBoardingPasses = allBoardingPasses;
+		this.departureDate = departureDate;
+		this.flightDuration = flightDuration;
+		this.passengerCapacity = passengerCapacity;
+		this.seatsTaken = seatsTaken;
+	}
+
+
+
+	}
+

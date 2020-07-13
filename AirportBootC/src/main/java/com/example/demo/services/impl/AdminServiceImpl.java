@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class AdminServiceImpl implements IAdminService {
 	
 	
 	@Override
-	public boolean insertFlight(int id, Airport airportFrom, Airport airportTo, BoardingPass boardingPass, Date departureDate,
+	public boolean insertFlight( Airport airportFrom, Airport airportTo, Date departureDate,
 			double flightDuration, int passengerCapacity) {
 		for (int i =0; i<allFlights.size();i++)
 		{
@@ -43,7 +44,7 @@ public class AdminServiceImpl implements IAdminService {
 			return false;
 		}
 		
-		allFlights.add(new Flight(id ,airportFrom, airportTo,boardingPass, departureDate, flightDuration, passengerCapacity));
+		allFlights.add(new Flight(airportFrom, airportTo,departureDate, flightDuration, passengerCapacity));
 		return true;
 		
 	}
@@ -59,13 +60,13 @@ public class AdminServiceImpl implements IAdminService {
 					fl.getPassengerCapacity()==flight.getPassengerCapacity())
 			return false;
 		}
-		allFlights.add(new Flight(flight.getF_ID(),flight.getAirportFrom(),flight.getAirportTo(),flight.getBoardingPass(),flight.getDepartureDate(),flight.getFlightDuration(),flight.getPassengerCapacity()));
+		allFlights.add(new Flight(flight.getAirportFrom(),flight.getAirportTo(),flight.getDepartureDate(),flight.getFlightDuration(),flight.getPassengerCapacity()));
 		return true;
 	}
 
 	@Override
-	public boolean updateFlightById(int id,Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,
-			int passengerCapacity ) {
+	public boolean updateFlightById(int id,Airport airportFrom, Airport airportTo,Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
+			int passengerCapacity, int seatsTaken ) {
 		if(id > 0 )
 		{
 			for(int i=0;i<allFlights.size();i++)
