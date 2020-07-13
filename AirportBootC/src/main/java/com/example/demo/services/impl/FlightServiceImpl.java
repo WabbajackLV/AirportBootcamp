@@ -85,5 +85,10 @@ public class FlightServiceImpl implements IFlightService{
 		return flightsInDate;
 	}
 	
+	@Override 
+	public ArrayList<Flight> allFlightsFromAirportToAirport(Airport airportFrom, Airport airportTo){
+		ArrayList<Flight> foundFlights = flightRepo.findByAirportFromAndAirportTo(airportFrom, airportTo);
+		return foundFlights;
+	}
 	
 }

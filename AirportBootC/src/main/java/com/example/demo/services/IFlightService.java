@@ -20,6 +20,8 @@ public interface IFlightService {
 
 	ArrayList<Flight> flightsInAirportInDay(Airport airportFrom, Date departureDate);
 
+	ArrayList<Flight> allFlightsFromAirportToAirport(Airport airportFrom, Airport airportTo);
+
 
 
 
