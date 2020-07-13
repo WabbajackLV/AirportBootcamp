@@ -11,8 +11,12 @@ import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
 
 public interface IFlightRepo extends CrudRepository<Flight, Integer>{
+
+
 	ArrayList<Flight> findByRegisteredUser(RegisteredUser regU);
 	boolean existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacity(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity);
 	ArrayList<Flight> findAllByAirportFromAndDepartureDate(Airport airportFrom, Date departureDate);
+	Flight findByAirportFromAndDepartureDate(Airport airportFrom, Date departureDate);
+
 
 }
