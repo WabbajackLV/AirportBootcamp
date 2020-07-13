@@ -7,8 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 
+@Getter @NoArgsConstructor @ToString
 @Entity
 @Table(name="AdminTable")
 public class Admin extends Person {
@@ -16,20 +21,6 @@ public class Admin extends Person {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="A_ID")
-	private long a_ID;
-	
-	Admin()
-	{
-		
-	}
+	private int a_ID;
 
-	public long getA_ID() {
-		return a_ID;
-	}
-
-	@Override
-	public String toString() {
-		return "Admin [a_ID=" + a_ID + "]";
-	}
-	
 }
