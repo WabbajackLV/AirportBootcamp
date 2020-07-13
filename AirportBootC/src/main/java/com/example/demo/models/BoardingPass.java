@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -27,11 +30,7 @@ public class BoardingPass {
 	@Column(name = "Price")
 	private double price;
 	
-	@Column(name = "Seat")
-	private Seat seat;
 	
-	@Column(name = "Flight")
-	private Flight flight;
 	
 	@Column(name = "RegUser")
 	private RegisteredUser regUser;
@@ -39,7 +38,13 @@ public class BoardingPass {
 	@Column(name = "Priority")
 	private boolean priority;
 	
-
+	@OneToOne(mappedBy="boardingPass")
+	private Seat seat;
+	
+	@ManyToOne
+	@JoinColumn(name="F_ID")
+	private Flight flight;
+	
 	public BoardingPass(double price, Flight flight, RegisteredUser regUser) {
 		super();
 		this.price = price;

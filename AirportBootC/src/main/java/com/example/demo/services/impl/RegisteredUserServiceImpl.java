@@ -41,15 +41,18 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	
 
 	@Override
-	public boolean bookFlight(Collection<Flight> purchasedFlights, int id) throws Exception {
+	public boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses, int id) throws Exception {
 		if(id>0)
 		{
 			if(regURepo.existsById(id))
 			{
 				RegisteredUser regU = regURepo.findById(id).get();
-				for(Flight fl:purchasedFlights)
+				for(BoardingPass bPass:purchasedBoardingPasses)
 				{
-				Flight flight = flightRepo.findByAirportFromAndDepartureDate(fl.getAirportFrom(), fl.getDepartureDate());
+				BoardingPass boardPass = bPassRepo.findByFlight(bPass.getFlight());
+				boardPass.setRegUser(regU);
+				bPassRepo.save(boardPass);
+				return true;
 				
 				}
 			}
@@ -57,7 +60,6 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		throw new Exception("There is no registered user with specific id in the System");
 	}
 
-	
 	@Override
 	public void getBoardingPass() {
 		
