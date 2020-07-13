@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -31,6 +32,8 @@ public class RegisteredUser extends Person{
 	@Column(name = "Points")
 	private int points;
 	
-	@Column(name = "AllBoardingPasses")
+	@OneToMany(mappedBy="regUser")
+	//@Column(name = "AllBoardingPasses")
+
 	private ArrayList<BoardingPass> allBoardingPasses;
 }
