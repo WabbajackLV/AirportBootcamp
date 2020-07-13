@@ -20,8 +20,10 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class Airport {
 	
-	
+	@Column(name = "Country")
 	public Countries country;
+	
+	@Column(name = "City")
 	public Cities city;
 	
 	@Id
