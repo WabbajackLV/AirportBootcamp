@@ -3,30 +3,33 @@ package com.example.demo.services.impl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
-import com.example.demo.repos.IAdminRepo;
-import com.example.demo.repos.IAirportRepo;
-import com.example.demo.repos.IFlightRepo;
 import com.example.demo.services.IAdminService;
 
+@Service
 public class AdminServiceImpl implements IAdminService {
-	
-	@Autowired
-	IAdminRepo adminRepo;
-	
-	@Autowired
-	IFlightRepo flightRepo;
-	
-	@Autowired
-	IAirportRepo airportRepo;
-	
 	
 	ArrayList<Flight> allFlights = new ArrayList<>();
 
+	@Override
+	public Flight selectFlightById(int id) throws Exception{
+		if(id > 0 )
+		{
+			for(int i=0;i<allFlights.size();i++)
+			{
+				if(allFlights.get(i).getF_ID() == id)
+					return allFlights.get(i);
+				
+			}
+		}
+		throw new Exception("There is no Flight with this id in the system");
+	}
+	
+	
 	@Override
 	public boolean insertFlight(int id, Airport airportFrom, Airport airportTo, BoardingPass boardingPass, Date departureDate,
 			double flightDuration, int passengerCapacity) {
@@ -43,6 +46,21 @@ public class AdminServiceImpl implements IAdminService {
 		allFlights.add(new Flight(id ,airportFrom, airportTo,boardingPass, departureDate, flightDuration, passengerCapacity));
 		return true;
 		
+	}
+	
+	@Override
+	public boolean insertFlightByObject(Flight flight) {
+		for (Flight fl:allFlights)
+		{
+			if(fl.getAirportFrom().equals(flight.getAirportFrom()) && 
+					fl.getAirportTo().equals(flight.getAirportTo())&& 
+					fl.getDepartureDate().equals(flight.getDepartureDate())&&
+					fl.getFlightDuration() == flight.getFlightDuration()&&
+					fl.getPassengerCapacity()==flight.getPassengerCapacity())
+			return false;
+		}
+		allFlights.add(new Flight(flight.getF_ID(),flight.getAirportFrom(),flight.getAirportTo(),flight.getBoardingPass(),flight.getDepartureDate(),flight.getFlightDuration(),flight.getPassengerCapacity()));
+		return true;
 	}
 
 	@Override
@@ -89,4 +107,6 @@ public class AdminServiceImpl implements IAdminService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 }
