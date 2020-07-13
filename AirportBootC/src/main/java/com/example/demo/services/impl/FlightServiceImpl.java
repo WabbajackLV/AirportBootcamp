@@ -70,11 +70,11 @@ public class FlightServiceImpl implements IFlightService{
 	}
 	
 	@Override
-	public boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity) {
-		if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacity(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity)) {
+	public boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity, double price) {
+		if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacityAndPrice(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price)) {
 			return false;
 		}
-		Flight newFlight = new Flight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity);
+		Flight newFlight = new Flight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price);
 		flightRepo.save(newFlight);
 		return true;
 	}

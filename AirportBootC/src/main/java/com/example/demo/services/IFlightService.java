@@ -16,11 +16,12 @@ public interface IFlightService {
 
 	boolean deleteFlightById(int id);
 
-	boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity);
 
 	ArrayList<Flight> flightsInAirportInDay(Airport airportFrom, Date departureDate);
 
 	ArrayList<Flight> allFlightsFromAirportToAirport(Airport airportFrom, Airport airportTo);
+
+	boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,int passengerCapacity, double price);
 
 
 

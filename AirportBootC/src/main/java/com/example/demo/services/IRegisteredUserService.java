@@ -12,5 +12,9 @@ public interface IRegisteredUserService {
 	
 	boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses,int id )throws Exception;
 	
+
 	boolean getBoardingPass(BoardingPass bPass);
+
+	boolean bookFlight(int id, Flight flight);
+
 }
