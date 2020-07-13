@@ -27,6 +27,7 @@ public class Flight extends Airport{
 	@Column(name = "F_ID" )
 	private int f_ID;
 	
+	
 	@Column(name = "AirportFrom")
 	private Airport airportFrom;
 	
@@ -61,8 +62,8 @@ public class Flight extends Airport{
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
 	}
-	
-	
+
+
 	
 	//TODO toString();
 	
