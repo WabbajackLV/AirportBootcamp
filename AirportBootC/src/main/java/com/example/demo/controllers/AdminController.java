@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
 import com.example.demo.services.IAdminService;
+import com.example.demo.services.IFlightService;
 
 @Controller
 @RequestMapping("/admin")
@@ -20,22 +24,24 @@ public class AdminController {
 
 	@Autowired
 	IAdminService adminService;
+	@Autowired
+	IFlightService flightService;
 
 	
 	@GetMapping("/newFlight")//url address -> localhost:8080/admin/newFlight
-	public String getNewFlight(Flight flight)
+	public String getNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,int passengerCapacity, double price)
 	{
 		return "new-flight";//new-flight.html
 		
 	}
 	
 	@PostMapping("/newFlight")//it will be called when SUBMIT button is pressed
-	public String postInsertOneProduct(@Valid Flight flight, BindingResult result)
+	public String postNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,int passengerCapacity, double price, BindingResult result)
 	{
 		if(result.hasErrors()) {
 			return "new-flight";
 		}
-		adminService.insertFlightByObject(flight);
+		flightService.createNewFlight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price);
 		return "redirect:/guest/showAllFlights";
 	}
 	
