@@ -67,7 +67,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 
 	
 	@Override
-	public void getBoardingPass() {
+	public boolean getBoardingPass(BoardingPass bPass) {
 		
 		
 	}
