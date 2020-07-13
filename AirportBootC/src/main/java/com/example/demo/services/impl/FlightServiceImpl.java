@@ -25,7 +25,7 @@ public class FlightServiceImpl implements IFlightService{
 				Flight flightToUpdate = flightRepo.findById(id).get();
 				flightToUpdate.setAirportFrom(apFrom);
 				flightToUpdate.setAirportTo(apTo);
-				flightToUpdate.setAllBoardingPasses(allBoardingPasses);
+				flightToUpdate.setBoardingPasses(allBoardingPasses);
 				flightToUpdate.setDepartureDate(departure);
 				flightToUpdate.setFlightDuration(duration);
 				flightToUpdate.setPassengerCapacity(capacity);
@@ -45,7 +45,7 @@ public class FlightServiceImpl implements IFlightService{
 				Flight flightToUpdate = flightRepo.findById(id).get();
 				flightToUpdate.setAirportFrom(flight.getAirportFrom());
 				flightToUpdate.setAirportTo(flight.getAirportTo());
-				flightToUpdate.setAllBoardingPasses(flight.getAllBoardingPasses());
+				flightToUpdate.setBoardingPasses(flight.getBoardingPasses());
 				flightToUpdate.setDepartureDate(flight.getDepartureDate());
 				flightToUpdate.setFlightDuration(flight.getFlightDuration());
 				flightToUpdate.setPassengerCapacity(flight.getPassengerCapacity());

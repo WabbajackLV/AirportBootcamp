@@ -39,8 +39,6 @@ public class Flight{
 	@Column(name = "AirportTo")
 	private Airport airportTo;
 	
-	@Column(name = "BoardingPass")
-	private Collection<BoardingPass> allBoardingPasses;
 	
 	@Column(name = "DepartureDate")
 	private Date departureDate;
