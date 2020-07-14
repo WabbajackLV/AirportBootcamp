@@ -72,6 +72,12 @@ public class FlightServiceImpl implements IFlightService{
 	}
 	
 	@Override
+	public ArrayList<Flight> selectAllFlights(){
+		ArrayList<Flight> allFlights = (ArrayList<Flight>) flightRepo.findAll();
+		return allFlights;
+	}
+	
+	@Override
 	public boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity, double price) {
 		/*if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacityAndPrice(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price)) {
 			return false;

@@ -76,6 +76,7 @@ public class Flight{
 	@OneToMany(mappedBy="flight")
 	private Collection<BoardingPass> boardingPasses;
 
+	/*
 	public Flight(Airport airportFrom, Airport airportTo,
 			Date departureDate, double flightDuration, int passengerCapacity, double price) {
 		this.airportFrom = airportFrom;
