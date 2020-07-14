@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import javax.persistence.Entity;
+
+
 import javax.persistence.Table;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "VipUserTable")
 @Getter @Setter @NoArgsConstructor
+
 public class VipUser{
 	
 	@Id
@@ -37,4 +42,10 @@ public class VipUser{
 	
 	
 	
+
+public class VipUser extends RegisteredUser{
+	
+	public VipUser (RegisteredUser user) {
+	}
+
 }

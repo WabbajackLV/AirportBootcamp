@@ -59,7 +59,11 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 				user.setPoints(user.getPoints() + (flight.getPrice()/10));
 				if(user.getPoints() >= 1000) {
 					VipUser upgradeUser = new VipUser(user);
+
 					vipURepo.save(upgradeUser);
+
+					regURepo.save(upgradeUser);
+
 				}
 				
 				return true;
