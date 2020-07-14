@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.RegisteredUser;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
 import com.example.demo.services.IRegisteredUserService;
@@ -35,6 +36,24 @@ public class RegisteredUserController {
 			{
 				return "error";
 			}
+	}
+	
+	@GetMapping("/bookFlight/{id}")
+	public String getBookFlightByRegUId(@PathVariable(name="id")int id,Model model,RegisteredUser regU)
+	{
+		try {
+			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
+		//	model.addAttribute("innerObjectFlights", flightService.allFlightsFromAirportToAirport(airportFrom, airportTo));
+			return null;
+		}
+		catch(Exception e)
+			{
+			e.printStackTrace();
+			return "error";
+		}
+		
+		
+		
 	}
 	
 }
