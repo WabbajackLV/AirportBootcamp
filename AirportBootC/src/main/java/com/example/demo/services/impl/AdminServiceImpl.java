@@ -24,10 +24,10 @@ public class AdminServiceImpl implements IAdminService {
 	public Flight selectFlightById(int id) throws Exception{
 		if(id > 0 )
 		{
-			for(int i=0;i<adminRepo.allFlights.size();i++)
+			for(int i=0;i<IAdminRepo.allFlights.size();i++)
 			{
-				if(adminRepo.allFlights.get(i).getF_ID() == id)
-					return adminRepo.allFlights.get(i);
+				if(IAdminRepo.allFlights.get(i).getF_ID() == id)
+					return IAdminRepo.allFlights.get(i);
 				
 			}
 		}
@@ -99,11 +99,11 @@ public class AdminServiceImpl implements IAdminService {
 	public boolean deleteFlightById(int id) {
 		if(id > 0 )
 		{
-			for(int i=0;i<adminRepo.allFlights.size();i++)
+			for(int i=0;i<IAdminRepo.allFlights.size();i++)
 			{
-				if(adminRepo.allFlights.get(i).getF_ID() == id)
+				if(IAdminRepo.allFlights.get(i).getF_ID() == id)
 				{
-					adminRepo.allFlights.remove(id);
+					IAdminRepo.allFlights.remove(id);
 					return true;
 				}
 			}
@@ -126,6 +126,14 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public boolean insertFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,
 			int passengerCapacity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateFlightById(int id, Airport airportFrom, Airport airportTo,
+			Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
+			int passengerCapacity, int seatsTaken) {
 		// TODO Auto-generated method stub
 		return false;
 	}

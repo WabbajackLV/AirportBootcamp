@@ -15,6 +15,7 @@ import com.example.demo.models.VipUser;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
+import com.example.demo.repos.IVipUserRepo;
 import com.example.demo.services.IRegisteredUserService;
 
 @Service
@@ -27,15 +28,17 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	IFlightRepo flightRepo;
 	@Autowired 
 	IBoardingPassRepo bPassRepo;
+	@Autowired
+	IVipUserRepo vipURepo;
 	
 	
 	@Override
 	public ArrayList<BoardingPass> getAllBookingsByRUId(int id) throws Exception {
 		if(id>0) {
 			if(regURepo.existsById(id)) {
-				RegisteredUser regU = regURepo.findById(id).get();
+				RegisteredUser regUser = regURepo.findById(id).get();
 				
-				ArrayList<BoardingPass> purchasedBoardingPasses = bPassRepo.findByRegisteredUser(regU);
+				ArrayList<BoardingPass> purchasedBoardingPasses = bPassRepo.findByRegUser(regUser);
 				 return purchasedBoardingPasses;
 			}
 		}
@@ -56,7 +59,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 				user.setPoints(user.getPoints() + (flight.getPrice()/10));
 				if(user.getPoints() >= 1000) {
 					VipUser upgradeUser = new VipUser(user);
-					regURepo.save(upgradeUser);
+					vipURepo.save(upgradeUser);
 				}
 				
 				return true;
@@ -109,5 +112,15 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		return false;
 	}
 
+	@Override
+	public RegisteredUser selectOneRegisteredUserById(int id) throws Exception {
+		if(id>0) {
+			if(regURepo.existsById(id)) {
+				return regURepo.findById(id).get();
+			}
+			
+		}
+		throw new Exception("There is no registered user with specific id in the System");
+	}
+	}
 
-}

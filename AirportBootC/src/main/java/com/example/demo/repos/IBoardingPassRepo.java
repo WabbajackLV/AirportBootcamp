@@ -13,7 +13,7 @@ import com.example.demo.models.RegisteredUser;
 
 public interface IBoardingPassRepo extends CrudRepository<BoardingPass, Integer>{
 
-	ArrayList<BoardingPass> findByRegisteredUser(RegisteredUser regU);
+	ArrayList<BoardingPass> findByRegUser(RegisteredUser regUser);
 
 
 	BoardingPass findByFlight(Flight flight);
