@@ -27,7 +27,7 @@ public class VipUser{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Setter(AccessLevel.NONE)
+	//@Setter(AccessLevel.NONE)
 	@Column(name = "VU_ID" )
 	private int vu_id;
 	
@@ -40,12 +40,4 @@ public class VipUser{
 		this.regUser = regUser;
 	}
 	
-	
-	
-
-public class VipUser extends RegisteredUser{
-	
-	public VipUser (RegisteredUser user) {
-	}
-
 }

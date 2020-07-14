@@ -39,6 +39,7 @@ IAdminRepo adminRepo;
 		Admin a1=new Admin("Alex","Loiop",34,26786789,"alex@gmail.com");
 		adminRepo.save(a1);
 		System.out.println(a1);
+		System.out.println(a1);
 	}
 
 
