@@ -25,6 +25,8 @@ public interface IFlightService {
 
 	ArrayList<Flight> selectAllFlights();
 
+	Flight selectOneFlightById(int id)throws Exception;
+
 
 
 

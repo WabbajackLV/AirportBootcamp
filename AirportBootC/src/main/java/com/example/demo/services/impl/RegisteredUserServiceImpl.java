@@ -31,6 +31,23 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	@Autowired
 	IVipUserRepo vipURepo;
 	
+	@Override
+	public ArrayList<Flight> selectAllFlights() {
+		return (ArrayList<Flight>) flightRepo.findAll();
+	}
+
+	@Override
+	public Flight selectOneFlightById(int id) throws Exception {
+		if(id > 0 )
+		{
+			if(flightRepo.existsById(id))
+			{
+				return flightRepo.findById(id).get();		
+			}
+		}
+		throw new Exception("Id is not correct and there is not product in the system");
+	}
+	
 	
 	@Override
 	public ArrayList<BoardingPass> getAllBookingsByRUId(int id) throws Exception {
@@ -124,5 +141,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no registered user with specific id in the System");
 	}
+
+	
 	}
 
