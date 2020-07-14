@@ -20,7 +20,7 @@ public class Admin extends Person {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="A_ID")
-	private int a_ID;
+	@Column(name="Ad_ID")
+	private int ad_ID;
 
 }

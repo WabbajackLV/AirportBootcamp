@@ -24,14 +24,14 @@ public class FlightServiceImpl implements IFlightService{
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
 				Flight flightToUpdate = flightRepo.findById(id).get();
-				flightToUpdate.setAirportFrom(apFrom);
-				flightToUpdate.setAirportTo(apTo);
+				//flightToUpdate.setAirportFrom(apFrom);
+				//flightToUpdate.setAirportTo(apTo);
 				flightToUpdate.setBoardingPasses(allBoardingPasses);
 				flightToUpdate.setDepartureDate(departure);
 				flightToUpdate.setFlightDuration(duration);
 				flightToUpdate.setPassengerCapacity(capacity);
 				flightToUpdate.setSeatsTaken(seatsTaken);
-				flightRepo.save(flightToUpdate);
+				//flightRepo.save(flightToUpdate);
 				
 				return true;
 			}
@@ -44,14 +44,14 @@ public class FlightServiceImpl implements IFlightService{
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
 				Flight flightToUpdate = flightRepo.findById(id).get();
-				flightToUpdate.setAirportFrom(flight.getAirportFrom());
-				flightToUpdate.setAirportTo(flight.getAirportTo());
+				//flightToUpdate.setAirportFrom(flight.getAirportFrom());
+				//flightToUpdate.setAirportTo(flight.getAirportTo());
 				flightToUpdate.setBoardingPasses(flight.getBoardingPasses());
 				flightToUpdate.setDepartureDate(flight.getDepartureDate());
 				flightToUpdate.setFlightDuration(flight.getFlightDuration());
 				flightToUpdate.setPassengerCapacity(flight.getPassengerCapacity());
 				flightToUpdate.setSeatsTaken(flight.getSeatsTaken());
-				flightRepo.save(flightToUpdate);
+				//flightRepo.save(flightToUpdate);
 				
 				return true;
 			}
@@ -72,24 +72,26 @@ public class FlightServiceImpl implements IFlightService{
 	
 	@Override
 	public boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity, double price) {
-		if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacityAndPrice(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price)) {
+		/*if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacityAndPrice(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price)) {
 			return false;
-		}
-		Flight newFlight = new Flight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price);
-		flightRepo.save(newFlight);
+		}*/
+		//Flight newFlight = new Flight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price);
+		//flightRepo.save(newFlight);
 		return true;
 	}
 	
 	@Override 
 	public ArrayList<Flight> flightsInAirportInDay(Airport airportFrom, Date departureDate) {
-		ArrayList<Flight> flightsInDate = flightRepo.findAllByAirportFromAndDepartureDate(airportFrom, departureDate);
-		return flightsInDate;
+		//ArrayList<Flight> flightsInDate = flightRepo.findAllByAirportFromAndDepartureDate(airportFrom, departureDate);
+		//return flightsInDate;
+		return null;
 	}
 	
 	@Override 
 	public ArrayList<Flight> allFlightsFromAirportToAirport(Airport airportFrom, Airport airportTo){
-		ArrayList<Flight> foundFlights = flightRepo.findByAirportFromAndAirportTo(airportFrom, airportTo);
-		return foundFlights;
+		//ArrayList<Flight> foundFlights = flightRepo.findByAirportFromAndAirportTo(airportFrom, airportTo);
+		//return foundFlights;
+		return null;
 	}
 	
 }

@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -23,7 +25,7 @@ import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor 
 @Table(name = "FlightTable")
-@Entity
+@Entity(name = "FlightEntity")
 public class Flight{
 	
 	@Id
@@ -32,13 +34,19 @@ public class Flight{
 	@Column(name = "F_ID" )
 	private int f_ID;
 	
-	
-	@Column(name = "AirportFrom")
+	/*@OneToOne
+	@JoinColumn(name="A_ID")
+	//@Column(name = "AirportFrom")
 	private Airport airportFrom;
-	
-	@Column(name = "AirportTo")
+	@OneToOne
+	@JoinColumn(name="A_ID")
+	//@Column(name = "AirportTo")
 	private Airport airportTo;
+	*/
 	
+	@OneToMany
+	@JoinColumn(name="A_ID")
+	private Collection<Airport> airportFromAndTo;
 	
 	@Column(name = "DepartureDate")
 	private Date departureDate;
@@ -64,9 +72,9 @@ public class Flight{
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
 
-	@OneToMany(mappedBy="Flight")
+	@OneToMany(mappedBy="flight")
 	private Collection<BoardingPass> boardingPasses;
-
+/*
 	public Flight(Airport airportFrom, Airport airportTo,
 			Date departureDate, double flightDuration, int passengerCapacity, double price) {
 		this.airportFrom = airportFrom;
@@ -78,7 +86,8 @@ public class Flight{
 		seatsTaken = 0;
 		
 	}
-
+*/
+	
 	
 	public void takeOneVipSeat() {
 		vipSeatCounter++;
@@ -86,6 +95,16 @@ public class Flight{
 	
 	public void takeOneRegSeat() {
 		regSeatCounter++;
+	}
+
+	public Flight(Collection<Airport> airportFromAndTo, Date departureDate, double flightDuration,
+			int passengerCapacity, @Min(0) double price) {
+		super();
+		this.airportFromAndTo = airportFromAndTo;
+		this.departureDate = departureDate;
+		this.flightDuration = flightDuration;
+		this.passengerCapacity = passengerCapacity;
+		this.price = price;
 	}
 
 
