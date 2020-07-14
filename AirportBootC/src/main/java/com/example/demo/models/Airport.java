@@ -1,12 +1,12 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -39,16 +39,10 @@ public class Airport {
 	
 	@Column(name = "AirportCode")
 	public String airportCode;
-	/*
-	@OneToOne(mappedBy="airportFrom")
-	private Flight flightFrom;
-	@OneToOne(mappedBy="airportTo")
-	private Flight flightTo;
-	*/
 	
 	@ManyToOne(targetEntity = Flight.class)
 	private Flight flight;
-	
+
 	
 	public Airport(Countries country, int number) {
 		super();
