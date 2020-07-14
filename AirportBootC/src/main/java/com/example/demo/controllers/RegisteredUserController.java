@@ -23,6 +23,27 @@ public class RegisteredUserController {
 	@Autowired
 	IBoardingPassService boardPService;
 	
+	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
+	public String getShowAllFlights(Model model)
+	{
+		model.addAttribute("innerObject", flightService.selectAllFlights());	
+		return "show-all-flights";//show-all-product-page.html
+		
+	}
+	
+	@GetMapping("/showAllFlights/{id}")//
+	public String getShowAllFlightsId(@PathVariable(name = "id")int id, Model model)
+	{
+	try {
+		model.addAttribute("innerObject",flightService.selectOneFlightById(id));
+		return("show-one-flight");
+		}
+	catch(Exception e)
+		{
+			return "error";
+		}
+	}
+	
 	@GetMapping("/showMyBookings/{id}")
 	public String getShowMyBookingsByRegUId(@PathVariable(name="id")int id,Model model)
 	{
@@ -43,7 +64,7 @@ public class RegisteredUserController {
 	{
 		try {
 			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
-		//	model.addAttribute("innerObjectFlights", flightService.allFlightsFromAirportToAirport(airportFrom, airportTo));
+			//model.addAttribute("innerObjectFlights", flightService.allFlightsFromAirportToAirport(airportFrom, airportTo));
 			return null;
 		}
 		catch(Exception e)

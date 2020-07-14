@@ -8,7 +8,7 @@ import com.example.demo.services.IAirportTestingService;
 
 
 @Controller
-public class UniversityController {
+public class AirportTestingController {
 
 	@Autowired
 	IAirportTestingService airService;
