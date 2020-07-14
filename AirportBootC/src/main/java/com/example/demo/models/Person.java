@@ -31,8 +31,8 @@ public class Person {
 	@Max(100)
 	private int age;
 
-	//String ?
-	@Column(name="Phone Number")
+
+	@Column(name="PhoneNumber")
 	@Pattern(regexp="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "Invalid phone number")
 	private int phoneNumber;
 	

@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.models.RegisteredUser;
 
 public interface IRegisteredUserService {
 
@@ -16,5 +17,7 @@ public interface IRegisteredUserService {
 	boolean getBoardingPass(BoardingPass bPass);
 
 	boolean bookFlight(int id, Flight flight);
+
+	RegisteredUser selectOneRegisteredUserById(int id)throws Exception;
 
 }

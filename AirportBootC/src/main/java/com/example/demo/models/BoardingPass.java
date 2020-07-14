@@ -46,24 +46,24 @@ public class BoardingPass {
 		this.flight = flight;
 		this.regUser = regUser;
 		this.priority = isRegUserAVip(regUser);
-		try {
+		/*try {
 			seat = generateSeat(flight, regUser);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	
 	
 	
 	public boolean isRegUserAVip(RegisteredUser user) {
-		if(user instanceof VipUser) {
-			return true;
-		}
+	//	if(user instanceof VipUser) {
+		//	return true;
+	//	}
 		return false;
 	}
 	
-	public Seat generateSeat(Flight flight, RegisteredUser user) throws Exception {
+	/*public Seat generateSeat(Flight flight, RegisteredUser user) throws Exception {
 		if(user instanceof VipUser) {
 			int seatNumber = flight.getVipSeatCounter(); 
 			if(seatNumber <= flight.getVipCapacity()) {
@@ -84,7 +84,7 @@ public class BoardingPass {
 			}
 		}
 		
-	}
+	}*/
 
 
 	
