@@ -62,7 +62,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 
 					vipURepo.save(upgradeUser);
 
-					regURepo.save(upgradeUser);
+					//regURepo.save(upgradeUser);
 
 				}
 				
