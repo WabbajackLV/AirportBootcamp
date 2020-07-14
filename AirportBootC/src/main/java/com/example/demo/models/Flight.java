@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,8 +23,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter @NoArgsConstructor @ToString
 @Table(name = "FlightTable")
 @Entity(name = "FlightEntity")
 public class Flight{
@@ -43,10 +44,14 @@ public class Flight{
 	@JoinColumn(name="A_ID")
 	//@Column(name = "AirportTo")
 	private Airport airportTo;
-	*/
+	
 	
 	@OneToMany
 	@JoinColumn(name="A_ID")
+	private Collection<Airport> airportFromAndTo;
+	*/
+	
+	@ManyToMany(mappedBy="flights")
 	private Collection<Airport> airportFromAndTo;
 	
 	@Column(name = "DepartureDate")

@@ -1,12 +1,20 @@
 package com.example.demo.services.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.enums.Countries;
 import com.example.demo.models.Admin;
+import com.example.demo.models.Airport;
+import com.example.demo.models.Flight;
 import com.example.demo.models.Person;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.repos.IAdminRepo;
+import com.example.demo.repos.IAirportRepo;
+import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.services.IAirportTestingService;
 
@@ -19,6 +27,10 @@ public class AirportTestingServiceImpl implements IAirportTestingService{
 IRegisteredUserRepo regURepo;
 @Autowired
 IAdminRepo adminRepo;
+@Autowired
+IAirportRepo airRepo;
+@Autowired
+IFlightRepo flightRepo;
 	
 	@Override
 	public void testModelLayer() {
@@ -40,6 +52,25 @@ IAdminRepo adminRepo;
 		adminRepo.save(a1);
 		System.out.println(a1);
 		System.out.println(a1);
+		
+		/*Airport air1=new Airport(Countries.Belgium,12);
+		airRepo.save(air1);
+		System.out.println(air1);*/
+		
+		
+		Airport air3 = new Airport(Countries.Belarus,1);
+		airRepo.save(air3);
+		Airport air2=new Airport(Countries.Albania,22);
+		airRepo.save(air2);
+		//System.out.println(air2);
+		
+		Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),null,1.5,77,90.9);
+		flightRepo.save(f1);
+		System.out.println(f1);
+		air3.getFlights().add(f1);
+		airRepo.save(air3);
+		air2.getFlights().add(f1);
+		airRepo.save(air2);
 	}
 
 
