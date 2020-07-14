@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -64,8 +66,14 @@ public class Flight{
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
 
-	@OneToMany(mappedBy="Flight")
+	@OneToMany(mappedBy="flight")
 	private Collection<BoardingPass> boardingPasses;
+	
+	@ManyToOne
+	@JoinColumn(name="A_ID")
+	private Airport airport;
+	
+	
 
 	public Flight(Airport airportFrom, Airport airportTo,
 			Date departureDate, double flightDuration, int passengerCapacity, double price) {

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import org.springframework.stereotype.Service;
-
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;

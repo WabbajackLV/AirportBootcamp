@@ -130,5 +130,13 @@ public class AdminServiceImpl implements IAdminService {
 		return false;
 	}
 
+	@Override
+	public boolean updateFlightById(int id, Airport airportFrom, Airport airportTo,
+			Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
+			int passengerCapacity, int seatsTaken) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }

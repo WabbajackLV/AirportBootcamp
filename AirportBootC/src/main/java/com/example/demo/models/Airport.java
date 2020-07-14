@@ -1,10 +1,13 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -37,6 +40,10 @@ public class Airport {
 	
 	@Column(name = "AirportCode")
 	public String airportCode;
+	
+	@OneToMany(mappedBy="airport")
+	private Collection<Flight> airportFlights;
+	
 	
 	
 	

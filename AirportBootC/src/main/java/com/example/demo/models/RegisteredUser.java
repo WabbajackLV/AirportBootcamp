@@ -35,6 +35,5 @@ public class RegisteredUser extends Person{
 	
 	@OneToMany(mappedBy="regUser")
 	//@Column(name = "AllBoardingPasses")
-
 	private Collection<BoardingPass> allBoardingPasses;
 }
