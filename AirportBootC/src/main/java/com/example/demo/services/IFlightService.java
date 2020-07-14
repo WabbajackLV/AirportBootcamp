@@ -23,6 +23,8 @@ public interface IFlightService {
 
 	boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,int passengerCapacity, double price);
 
+	ArrayList<Flight> selectAllFlights();
+
 
 
 

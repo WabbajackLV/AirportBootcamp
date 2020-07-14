@@ -1,5 +1,7 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.enums.Countries;
@@ -12,5 +14,7 @@ public interface IAirportService {
 	boolean insertNewAirportByObject(Airport airport);
 
 	boolean deleteByAirportCode(String airportCode);
+
+	ArrayList<Airport> getAllAirports();
 
 }

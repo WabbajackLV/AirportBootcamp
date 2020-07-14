@@ -1,5 +1,8 @@
 package com.example.demo.services.impl;
 
+import java.lang.module.FindException;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,13 @@ public class AirportServiceImpl implements IAirportService{
 	
 	@Autowired
 	IAirportRepo airRepo;
+	
+	
+	//TODO getAllAirports
+	@Override
+	public ArrayList<Airport> getAllAirports(){
+		return (ArrayList<Airport>) airRepo.findAll();
+	}
 	
 	@Override
 	public boolean insertNewAirport(Countries country, int number) {
