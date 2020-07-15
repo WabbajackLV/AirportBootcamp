@@ -2,11 +2,21 @@
 	<body>
 	
 	<p>Flight</p>
-	
+	<p>Airports From and To</p>
 	<!-- <p th:text="${innerObject.getAirportFromAndTo()}"></p> -->
+	 <p>Departure Date and Time</p>
 	<p th:text="${innerObject.getDepartureDate()}"></p>
+	   <p>Flight Duration</p>
 	<p th:text="${innerObject.getFlightDuration()}"></p>
 	<!--  <p th:text="${innerObject.toString()}"></p>-->
+	
+	<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 	</body>
 
 	

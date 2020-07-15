@@ -31,6 +31,17 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	@Autowired
 	IVipUserRepo vipURepo;
 	
+
+	@Override
+	public boolean register(String name, String surname, int age,int phoneNumber,String email,String password) {
+		if(regURepo.existsByEmail(email)) {
+		return false;
+	}
+		RegisteredUser regU=new RegisteredUser(name,surname,age,phoneNumber,email,password);
+		regURepo.save(regU);
+		return true;
+	}
+	
 	@Override
 	public ArrayList<Flight> selectAllFlights() {
 		return (ArrayList<Flight>) flightRepo.findAll();
