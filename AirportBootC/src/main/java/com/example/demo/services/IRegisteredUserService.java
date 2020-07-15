@@ -8,7 +8,8 @@ import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
 
 public interface IRegisteredUserService {
-	
+
+			
 	//see all flights
 	ArrayList<Flight> selectAllFlights();
 	Flight selectOneFlightById(int id)throws Exception;
@@ -24,6 +25,8 @@ public interface IRegisteredUserService {
 	boolean bookFlight(int id, Flight flight);
 
 	RegisteredUser selectOneRegisteredUserById(int id)throws Exception;
+
+	boolean register(String name, String surname, int age, int phoneNumber, String email,String password);
 
 	
 }
