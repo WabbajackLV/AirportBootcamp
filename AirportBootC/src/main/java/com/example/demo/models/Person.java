@@ -1,11 +1,18 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +48,12 @@ public class Person {
 	message = "Invalid e-mail adress")
 	private String email;
 
+	/*@Column(name = "role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	*/
 	
+	 
 	public Person(
 			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z ]+$", message = "Only letters and spaces allowed") String name,
 			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z ]+$", message = "Only letters and spaces allowed") String surname,

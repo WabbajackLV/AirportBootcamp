@@ -8,4 +8,6 @@ public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Inte
 
 	boolean existsByEmail(String email);
 
+	RegisteredUser findByEmail(String email);
+
 }
