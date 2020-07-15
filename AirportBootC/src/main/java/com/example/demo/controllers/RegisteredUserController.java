@@ -28,7 +28,7 @@ public class RegisteredUserController {
 	IBoardingPassService boardPService;
 	
 	
-	@GetMapping("/register")//localhost:8080/registeredUser/register
+	/*@GetMapping("/register")//localhost:8080/registeredUser/register
 	public String getRegister(RegisteredUser regU)//Its empty customer
 	{
 		return"register";//register-page.html
@@ -44,7 +44,7 @@ public class RegisteredUserController {
 
 		regUService.register(regU.getName(),regU.getSurname(),regU.getAge(),regU.getPhoneNumber(),regU.getEmail(),regU.getPassword());
 		return "redirect:/test";
-	}
+	}*/
 	
 	
 	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
