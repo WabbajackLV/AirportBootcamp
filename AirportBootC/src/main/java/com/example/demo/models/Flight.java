@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,19 +8,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
+
+import com.example.demo.enums.Countries;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter @NoArgsConstructor @ToString
 @Table(name = "FlightTable")
-@Entity
-public class Flight extends Airport{
+@Entity(name = "FlightEntity")
+public class Flight{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,15 +36,23 @@ public class Flight extends Airport{
 	@Column(name = "F_ID" )
 	private int f_ID;
 	
-	
-	@Column(name = "AirportFrom")
+	/*@OneToOne
+	@JoinColumn(name="A_ID")
+	//@Column(name = "AirportFrom")
 	private Airport airportFrom;
-	
-	@Column(name = "AirportTo")
+	@OneToOne
+	@JoinColumn(name="A_ID")
+	//@Column(name = "AirportTo")
 	private Airport airportTo;
 	
-	@Column(name = "BoardingPass")
-	private BoardingPass boardingPass;
+	
+	@OneToMany
+	@JoinColumn(name="A_ID")
+	private Collection<Airport> airportFromAndTo;
+	*/
+	
+	@ManyToMany(mappedBy="flights")
+	private Collection<Airport> airportFromAndTo;
 	
 	@Column(name = "DepartureDate")
 	private Date departureDate;
@@ -47,26 +64,56 @@ public class Flight extends Airport{
 	@Column(name = "PassengerCapacity")
 	private int passengerCapacity;
 	
+	private int vipCapacity = passengerCapacity/3;
+	private int regularCapacity = passengerCapacity - vipCapacity;
+	
+	private int vipSeatCounter = 1; 
+	private int regSeatCounter = 1;
+	
+	@Column(name = "Price")
+	@Min(0)
+	private double price;
+	
 	@Min(0)
 	@Column(name = "SeatsTaken")
 	private int seatsTaken;
 
-	public Flight(int f_ID, Airport airportFrom, Airport airportTo, BoardingPass boardingPass, Date departureDate,
-			double flightDuration, int passengerCapacity) {
-		super();
-		this.f_ID = f_ID;
+	@OneToMany(mappedBy="flight")
+	private Collection<BoardingPass> boardingPasses;
+
+	/*
+	public Flight(Airport airportFrom, Airport airportTo,
+			Date departureDate, double flightDuration, int passengerCapacity, double price) {
 		this.airportFrom = airportFrom;
 		this.airportTo = airportTo;
-		this.boardingPass = boardingPass;
 		this.departureDate = departureDate;
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
+		this.price = price;
+		seatsTaken = 0;
+		
+	}
+*/
+	
+	
+	public void takeOneVipSeat() {
+		vipSeatCounter++;
+	}
+	
+	public void takeOneRegSeat() {
+		regSeatCounter++;
+	}
+
+	public Flight(Collection<Airport> airportFromAndTo, Date departureDate, double flightDuration,
+			int passengerCapacity, @Min(0) double price) {
+		super();
+		this.airportFromAndTo = airportFromAndTo;
+		this.departureDate = departureDate;
+		this.flightDuration = flightDuration;
+		this.passengerCapacity = passengerCapacity;
+		this.price = price;
 	}
 
 
-	
-	//TODO toString();
-	
-	
-	
-}
+	}
+

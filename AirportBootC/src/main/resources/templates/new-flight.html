@@ -1,0 +1,69 @@
+
+
+
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	
+	<form action="#" th:action =" @{/admin/newFlight}" th:object = "${flight}" method = "post">
+	
+	<p th:text= "'Hello ', you are free to add a new flight: '"> </p>
+	<table>
+		
+		
+		
+		<tr>
+			<td>Please choose the take-off airport</td>
+			<td>
+			<select    >
+				<option th:each="airport: ${}" th:value="${airport.getId()}" th:text="${airport.getId()}" th:text="${prod.getCountry()}">
+				</option>
+			</select>
+			</td>
+			
+		</tr>
+		
+		
+		<tr>
+			<td>Please choose the landing airport</td>
+			<td> <input type = "text"th:field="*{airportFromAndTo}"> </td>
+			<td th:if="${#fields.hasErrors('airportFromAndTo')}" th:errors="*{airportFromAndTo}"></td>
+			
+		</tr>
+		<tr>
+			<td>Please insert a Departure Date</td>
+			<td> <input type = "text"th:field="*{departureDate}"> </td>
+			<td th:if="${#fields.hasErrors('departureDate')}" th:errors="*{departureDate}"></td>
+			
+		</tr>
+		<tr>
+			<td>Please insert a Flight Duration</td>
+			<td> <input type = "text"th:field="*{flightDuration}"> </td>
+			<td th:if="${#fields.hasErrors('flightDuration')}" th:errors="*{flightDuration}"></td>
+			
+		</tr>
+		
+		<tr>
+			<td>Please insert a Flight passenger capacity</td>
+			<td> <input type = "text"th:field="*{passengerCapacity}"> </td>
+			<td th:if="${#fields.hasErrors('passengerCapacity')}" th:errors="*{passengerCapacity}"></td>
+			
+		</tr>
+		<tr>
+			<td>Please insert a Flight price</td>
+			<td> <input type = "text"th:field="*{price}"> </td>
+			<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+			
+		</tr>
+		
+		
+	</table>
+	
+
+	<input type = "submit">
+	
+	</form>
+	
+	</body>
+
+</html>
