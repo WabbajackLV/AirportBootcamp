@@ -1,10 +1,14 @@
 package com.example.demo.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.RegisteredUser;
@@ -22,6 +26,26 @@ public class RegisteredUserController {
 	IFlightService flightService;
 	@Autowired
 	IBoardingPassService boardPService;
+	
+	
+	@GetMapping("/register")//localhost:8080/registeredUser/register
+	public String getRegister(RegisteredUser regU)//Its empty customer
+	{
+		return"register";//register-page.html
+	}
+	
+	@PostMapping("/register")
+	public String postRegister(@Valid RegisteredUser regU, BindingResult result)
+	{
+		System.out.println(regU);
+		if(result.hasErrors()) {
+			return "register";
+		}
+
+		regUService.register(regU.getName(),regU.getSurname(),regU.getAge(),regU.getPhoneNumber(),regU.getEmail(),regU.getPassword());
+		return "redirect:/test";
+	}
+	
 	
 	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
 	public String getShowAllFlights(Model model)

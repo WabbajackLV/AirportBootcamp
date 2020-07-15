@@ -5,8 +5,11 @@
 	
 	<table>
 	<tr th:each="flight: ${innerObject}">
+	<p>Airports From and To</p>
     <!--  <td th:text="${flight.getAirportFromAndTo()}" />  -->
+    <p>Departure Date and Time</p>
     <td th:text="${flight.getDepartureDate()}" />
+    <p>Flight Duration</p>
     <td th:text="${flight.getFlightDuration()}" />
     
 </tr>
