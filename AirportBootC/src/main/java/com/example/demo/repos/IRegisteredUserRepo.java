@@ -6,4 +6,8 @@ import com.example.demo.models.RegisteredUser;
 
 public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Integer>{
 
+	boolean existsByEmail(String email);
+
+	RegisteredUser findByEmail(String email);
+
 }

@@ -1,3 +1,9 @@
+
+                    
+                    
+                    
+                    
+<!--    ARVIS SHOW-ALL-FLIGHTS    NEEDS TO BE PUT IN A DIFFERENT HTML SHOW-ALL-FLIGHTS-ADMIN
 <!DOCTYPE HTML>
 <html xmlns:th = "http://www.thymeleaf.org">
 
@@ -23,4 +29,54 @@
 	</tr>
 	</table>
 </body>
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	
+	<p>All flights</p>
+	
+	
+	<table>
+    <thead>
+        <tr>
+            <!-- <th> Airport From And To </th> -->
+            <th> Departure Date And Time </th>
+            <th> Flight Duration </th>
+            <th> Price </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="flight: ${innerObject}">
+         <!--    <td><span th:text="${flight.getAirportFromAndTo()}"> Airport From And To </span></td>
+         -->    <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
+             <td><span th:text="${flight.getFlightDuration()}"> Flight Duration </span></td>
+              <td><span th:text="${flight.getPrice()}"> Price </span></td>
+             <td> <a th:href= "@{'http://localhost:8080/showAllFlights/'+${flight.f_ID}}"> See flight details </a></td>
+              
+   <!--          <td>  <form action="http://localhost:8080/showAllFlights/${flight.getF_ID()}"><input type="submit" value="See flight" /> </td> 
+   
+</form>-->
+        </tr>
+    </tbody>
+</table>
+
+	
+	<!--  
+	<table>
+	<tr th:each="flight: ${innerObject}">
+	<p>Airports From and To</p>
+      <td th:text="${flight.getAirportFromAndTo()}" /> 
+    <p>Departure Date and Time</p>
+    <td th:text="${flight.getDepartureDate()}" />
+    <p>Flight Duration</p>
+    <td th:text="${flight.getFlightDuration()}" />
+    
+</tr>
+	
+	</table>-->
+
+	</body>
+
+
 </html>

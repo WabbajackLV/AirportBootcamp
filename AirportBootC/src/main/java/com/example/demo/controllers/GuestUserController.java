@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.services.IBoardingPassService;
@@ -17,9 +16,8 @@ import com.example.demo.services.IFlightService;
 import com.example.demo.services.IRegisteredUserService;
 
 @Controller
-@RequestMapping("/registeredUser")
-public class RegisteredUserController {
-	
+public class GuestUserController {
+
 	@Autowired
 	IRegisteredUserService regUService;
 	@Autowired
@@ -27,25 +25,30 @@ public class RegisteredUserController {
 	@Autowired
 	IBoardingPassService boardPService;
 	
-	
-	/*@GetMapping("/register")//localhost:8080/registeredUser/register
-	public String getRegister(RegisteredUser regU)//Its empty customer
-	{
-		return"register";//register-page.html
+	@GetMapping("/")
+	public String showHome(Model model) {
+		return "index";
 	}
 	
-	@PostMapping("/register")
-	public String postRegister(@Valid RegisteredUser regU, BindingResult result)
+	@GetMapping("/registration_form")//localhost:8080/registeredUser/register
+	public String getRegister(Model model)//Its empty customer
+	{
+		RegisteredUser regU=new RegisteredUser();
+		model.addAttribute("regU", regU);
+		return"registration_form";//register.html
+	}
+	
+	@PostMapping("/save")
+	public String postRegister(@Valid RegisteredUser regU, Model model,BindingResult result)
 	{
 		System.out.println(regU);
 		if(result.hasErrors()) {
-			return "register";
+			return "registration_form";
 		}
-
+		model.addAttribute("regU", regU);
 		regUService.register(regU.getName(),regU.getSurname(),regU.getAge(),regU.getPhoneNumber(),regU.getEmail(),regU.getPassword());
-		return "redirect:/test";
-	}*/
-	
+		return "display_form";
+	}
 	
 	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
 	public String getShowAllFlights(Model model)
@@ -68,34 +71,5 @@ public class RegisteredUserController {
 		}
 	}
 	
-	@GetMapping("/showMyBookings/{id}")
-	public String getShowMyBookingsByRegUId(@PathVariable(name="id")int id,Model model)
-	{
-		try {
-			model.addAttribute("innerObjectBoardPass",regUService.getAllBookingsByRUId(id));
-			//model.addAttribute("innerObjectFlight", boardPService.getFlightById(id));
-			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
-			return "show-all-bookings";
-			}
-		catch(Exception e)
-			{
-				return "error";
-			}
-	}
-	
-	@GetMapping("/bookFlight/{id}")
-	public String getBookFlightByRegUId(@PathVariable(name="id")int id,Model model,RegisteredUser regU)
-	{
-		try {
-			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
-			//model.addAttribute("innerObjectFlights", flightService.allFlightsFromAirportToAirport(airportFrom, airportTo));
-			return null;
-		}
-		catch(Exception e)
-			{
-			e.printStackTrace();
-			return "error";
-		}
-	}
 	
 }

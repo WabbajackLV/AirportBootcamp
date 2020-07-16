@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	
+	<p>Flight</p>
+	
+	<table>
+    <thead>
+        <tr>
+            <!-- <th> Airport From And To </th> -->
+            <th> Departure Date And Time </th>
+            <th> Flight Duration </th>
+            <th> Price </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+         <!--    <td><span th:text="${innerObject.getAirportFromAndTo()}"> Airport From And To </span></td>
+         -->    <td><span th:text="${innerObject.getDepartureDate()}"> Departure Date And Time </span></td>
+             <td><span th:text="${innerObject.getFlightDuration()}"> Flight Duration </span></td>
+              <td><span th:text="${innerObject.getPrice()}"> Price </span></td>
+        </tr>
+    </tbody>
+</table>
+	<!--  
+	<p>Airports From and To</p>
+	 <p th:text="${innerObject.getAirportFromAndTo()}"></p> 
+	  <p>Departure Date and Time</p>
+	<p th:text="${innerObject.getDepartureDate()}"></p>
+	   <p>Flight Duration</p>
+	<p th:text="${innerObject.getFlightDuration()}"></p>
+	<!--  <p th:text="${innerObject.toString()}"></p>-->
+	
+	<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+	</body>
+
+	
+
+</html>

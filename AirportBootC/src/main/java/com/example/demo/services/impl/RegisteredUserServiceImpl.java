@@ -5,8 +5,11 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.config.IUserAuthorityRepo;
+import com.example.demo.config.UserAuthorities;
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
@@ -30,6 +33,38 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	IBoardingPassRepo bPassRepo;
 	@Autowired
 	IVipUserRepo vipURepo;
+	@Autowired
+	PasswordEncoder passE;
+	@Autowired
+	IUserAuthorityRepo uAuthRepo;
+	@Override
+	public boolean register(String name, String surname, int age,int phoneNumber,String email,String password) {
+		if(regURepo.existsByEmail(email)) {
+		return false;
+	}
+		UserAuthorities auth=uAuthRepo.findByRoleName("user");
+		RegisteredUser regU=new RegisteredUser(name,surname,age,phoneNumber,email,passE.encode(password),auth);
+		
+		regURepo.save(regU);
+		return true;
+	}
+	
+	@Override
+	public ArrayList<Flight> selectAllFlights() {
+		return (ArrayList<Flight>) flightRepo.findAll();
+	}
+
+	@Override
+	public Flight selectOneFlightById(int id) throws Exception {
+		if(id > 0 )
+		{
+			if(flightRepo.existsById(id))
+			{
+				return flightRepo.findById(id).get();		
+			}
+		}
+		throw new Exception("Id is not correct and there is not product in the system");
+	}
 	
 	
 	@Override
@@ -124,5 +159,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no registered user with specific id in the System");
 	}
+
+	
 	}
 

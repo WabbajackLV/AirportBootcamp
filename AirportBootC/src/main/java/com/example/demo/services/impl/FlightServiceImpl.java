@@ -123,5 +123,19 @@ public class FlightServiceImpl implements IFlightService{
 	}
 
 
+
+
+	@Override
+	public Flight selectOneFlightById(int id) throws Exception {
+		if(id > 0 )
+		{
+			if(flightRepo.existsById(id))
+			{
+				return flightRepo.findById(id).get();		
+			}
+		}
+		throw new Exception("Id is not correct and there is not product in the system");
+	}
+
 	
 }
