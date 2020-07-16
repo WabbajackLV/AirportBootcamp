@@ -19,9 +19,15 @@
          -->    <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
              <td><span th:text="${flight.getFlightDuration()}"> Flight Duration </span></td>
               <td><span th:text="${flight.getPrice()}"> Price </span></td>
+             <td> <a th:href= "@{'http://localhost:8080/showAllFlights/'+${flight.f_ID}}"> See flight details </a></td>
+              
+   <!--          <td>  <form action="http://localhost:8080/showAllFlights/${flight.getF_ID()}"><input type="submit" value="See flight" /> </td> 
+   
+</form>-->
         </tr>
     </tbody>
 </table>
+
 	
 	<!--  
 	<table>
