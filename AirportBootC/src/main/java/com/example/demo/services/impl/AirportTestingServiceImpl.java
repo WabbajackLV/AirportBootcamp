@@ -1,7 +1,11 @@
 package com.example.demo.services.impl;
 
+import java.awt.List;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,19 +62,29 @@ IFlightRepo flightRepo;
 		System.out.println(air1);*/
 		
 		
-		Airport air3 = new Airport(Countries.Belarus,1);
+		Airport air3 = new Airport(Countries.Austria, (int) 14);
 		airRepo.save(air3);
 		Airport air2=new Airport(Countries.Albania,22);
 		airRepo.save(air2);
 		//System.out.println(air2);
 		
-		Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),null,1.5,77,90.9);
-		flightRepo.save(f1);
-		System.out.println(f1);
-		air3.getFlights().add(f1);
+		//Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),null,1.5,77,90.9);
+		//flightRepo.save(f1);
+		//System.out.println(f1);
+		//air3.getFlights().add(f1);
 		airRepo.save(air3);
-		air2.getFlights().add(f1);
+		//air2.getFlights().add(f1);
 		airRepo.save(air2);
+		ArrayList<Airport> test = new ArrayList<Airport>();
+		test.add(air2);
+		test.add(air3);
+		LocalDateTime newDate = LocalDateTime.now();
+		
+		
+		
+		Flight newOne = new Flight(test, newDate, (double)12.00, 124, (double)154.00);
+		System.out.println(newOne);
+		flightRepo.save(newOne);
 	}
 
 

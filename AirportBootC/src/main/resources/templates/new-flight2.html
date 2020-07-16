@@ -10,42 +10,64 @@
 		<tr>
 			<td>Please choose the take-off airport</td>
 			<td>
-			<select  name = "airport" th:field="*{airportFrom}" >
-				<option th:each="airport: ${innerObject}" th:value="${airport.getA_ID()}" th:text="${airport.getAirportCode()}">
+			<select name="airportFrom" th:field="*{airportFrom.airportCode}" >
+				<option th:each="airportFrom: ${airports}" th:value="${airportFrom.airportCode}" th:text="${airportFrom.getAirportCode()}">
 				</option>
 			</select>
 			</td>
 			
 		</tr>
 		
-		<!--  
+		
 		<tr>
 			<td>Please choose the landing airport</td>
-			<td> <input type = "text"th:field="*{airportFromAndTo}"> </td>
-			<td th:if="${#fields.hasErrors('airportFromAndTo')}" th:errors="*{airportFromAndTo}"></td>
+			<td>
+			<select name="airportTo" th:field="*{airportTo.airportCode}" >
+				<option th:each="airportTo: ${airports}" th:value="${airportTo.airportCode}" th:text="${airportTo.getAirportCode()}">
+				</option>
+			</select>
+			</td>
 			
 		</tr>
+		
+		
+		
 		<tr>
-			<td>Please insert a Departure Date</td>
-			<td> <input type = "text"th:field="*{departureDate}"> </td>
-			<td th:if="${#fields.hasErrors('departureDate')}" th:errors="*{departureDate}"></td>
+			<th class="align-right">Start date</th>
+			<td><input type = "date" th:field="*{departureDate}"></td>
+		</tr>
+		
+		<!--  
+		<tr>
+			<td>Take off time (hours): </td>
+			<td> <input type = "text"th:field="*{departureTimeHours}"> </td>
+			<td th:if="${#fields.hasErrors('departureTimeHours')}" th:errors="*{departureTimeHours}"></td>
+			
+		</tr>
+		
+		<tr>
+			<td>Take off time (minutes): </td>
+			<td> <input type = "text"th:field="*{departureTimeMinutes}"> </td>
+			<td th:if="${#fields.hasErrors('departureTimeMinutes')}" th:errors="*{departureTimeMinutes}"></td>
 			
 		</tr>
 		-->
+		
 		<tr>
 			<td>Please insert a Flight Duration</td>
 			<td> <input type = "text"th:field="*{flightDuration}"> </td>
 			<td th:if="${#fields.hasErrors('flightDuration')}" th:errors="*{flightDuration}"></td>
 			
 		</tr>
-		<!--  
+		
+
 		<tr>
 			<td>Please insert a Flight passenger capacity</td>
 			<td> <input type = "text"th:field="*{passengerCapacity}"> </td>
 			<td th:if="${#fields.hasErrors('passengerCapacity')}" th:errors="*{passengerCapacity}"></td>
 			
 		</tr>
-		-->
+
 		<tr>
 			<td>Please insert a Flight price</td>
 			<td> <input type = "text"th:field="*{price}"> </td>

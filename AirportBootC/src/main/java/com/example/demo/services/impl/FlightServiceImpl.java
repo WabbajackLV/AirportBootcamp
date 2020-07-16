@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -11,17 +12,24 @@ import org.springframework.stereotype.Service;
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.services.IFlightService;
 
 @Service
 public class FlightServiceImpl implements IFlightService{
 	
+	
+	
+	
 	@Autowired
 	IFlightRepo flightRepo;
 	
+	@Autowired
+	IAirportRepo airRepo;
+	
 	@Override
-	public boolean updateFlightById(int id, Airport apFrom, Airport apTo,Collection<BoardingPass> allBoardingPasses, Date departure, double duration, int capacity, int seatsTaken) {
+	public boolean updateFlightById(int id, Airport apFrom, Airport apTo,Collection<BoardingPass> allBoardingPasses, LocalDateTime departure, double duration, int capacity, int seatsTaken) {
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
 				Flight flightToUpdate = flightRepo.findById(id).get();
@@ -78,17 +86,30 @@ public class FlightServiceImpl implements IFlightService{
 	}
 	
 	@Override
-	public boolean createNewFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration, int passengerCapacity, double price) {
-		/*if(flightRepo.existsByAirportFromAndAirportToAndDepartureDateAndFlightDurationAndPassengerCapacityAndPrice(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price)) {
-			return false;
-		}*/
-		//Flight newFlight = new Flight(airportFrom, airportTo, departureDate, flightDuration, passengerCapacity, price);
-		//flightRepo.save(newFlight);
+	public boolean createNewFlight(Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration, int passengerCapacity, double price) {
+		Airport air1 = airRepo.findByAirportCode(airportFrom.getAirportCode());
+		Airport air2 = airRepo.findByAirportCode(airportTo.getAirportCode());
+		
+		
+		Collection<Airport> tempA = new ArrayList<Airport>();
+		//ArrayList<Airport> tempA = new ArrayList<>();
+		tempA.add(air1);
+		tempA.add(air2);
+		System.out.println("Departure date ==>" + departureDate);
+		System.out.println("TEMP_A" + tempA);
+		Flight newFlight = new Flight(tempA, departureDate, flightDuration, passengerCapacity, price);
+		air1.getFlights().add(newFlight);
+		air2.getFlights().add(newFlight);
+		flightRepo.save(newFlight);
+		airRepo.save(air1);
+		airRepo.save(air2);
+		System.out.println("Repo ==> " + flightRepo.findAll());
 		return true;
 	}
 	
+	
 	@Override 
-	public ArrayList<Flight> flightsInAirportInDay(Airport airportFrom, Date departureDate) {
+	public ArrayList<Flight> flightsInAirportInDay(Airport airportFrom, LocalDateTime departureDate) {
 		//ArrayList<Flight> flightsInDate = flightRepo.findAllByAirportFromAndDepartureDate(airportFrom, departureDate);
 		//return flightsInDate;
 		return null;
@@ -100,5 +121,7 @@ public class FlightServiceImpl implements IFlightService{
 		//return foundFlights;
 		return null;
 	}
+
+
 	
 }

@@ -51,9 +51,6 @@ public class RegisteredUserController {
 			e.printStackTrace();
 			return "error";
 		}
-		
-		
-		
 	}
 	
 }

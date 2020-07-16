@@ -1,6 +1,6 @@
 package com.example.demo.models;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -13,9 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import com.example.demo.enums.Countries;
@@ -36,23 +35,23 @@ public class Airport {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "A_ID" )
-	public int a_ID;
+	private int a_ID;
 	
-	//@Min(1)
-	//@Max(99)
+	@Min(0)
 	int number;
 	
 	@Column(name = "Country")
-	public Countries country;
+	private Countries country;
 	
 	@Column(name = "AirportCode")
-	public String airportCode;
+	private String airportCode;
 	/*
 	@ManyToOne(targetEntity = Flight.class)
 	private Flight flight;
 	*/
 	
 	@ManyToMany
+	@ToString.Exclude
 	@JoinTable(name="Flight_Airport", joinColumns=@JoinColumn(name="A_ID"), inverseJoinColumns=@JoinColumn(name="F_ID") )
 	private Collection<Flight> flights;
 	
@@ -61,7 +60,6 @@ public class Airport {
 		this.country = country;
 		generateAirportCode();
 		airportCode += number;
-		flights=new ArrayList<>();
 	}
 	
 	
@@ -75,7 +73,7 @@ public class Airport {
 	}
 
 
-
+	/*
 	public Airport(Countries country, //@Min(1) @Max(99) 
 			int number, String airportCode) {
 		super();
@@ -83,7 +81,7 @@ public class Airport {
 		this.number = number;
 		this.airportCode = airportCode;
 	}
-
+	 */
 
 
 	
