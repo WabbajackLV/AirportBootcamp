@@ -97,6 +97,7 @@ public class RegisteredUserController {
 			return "error";
 		}*/
 		try {
+			
 			idU=regUService.bookFlightCustEmail(registeredUser.getEmail());
 		} catch (Exception e) {
 			e.printStackTrace();
