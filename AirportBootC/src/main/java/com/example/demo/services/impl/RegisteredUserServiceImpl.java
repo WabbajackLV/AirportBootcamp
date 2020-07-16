@@ -79,9 +79,9 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no customer with specific id in the System");
 	}
-	
+	/*
 	@Override 
-	public boolean bookFlight(int id, Flight flight) {
+	public boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses) {
 		if(id > 0) {
 			if(regURepo.existsById(id)) {
 				RegisteredUser user = regURepo.findById(id).get();
@@ -104,9 +104,39 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 			
 		}
 		return false;
+	}*/
+	
+	@Override 
+	public boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses) {
+		if(id > 0) {
+			if(regURepo.existsById(id)) {
+				RegisteredUser user = regURepo.findById(id).get();
+				
+				BoardingPass newPass = new BoardingPass(flight, user);
+				bPassRepo.save(newPass);
+				for(BoardingPass bPass:purchasedBoardingPasses)
+				{
+				BoardingPass boardPass = bPassRepo.findByFlight(bPass.getFlight());
+				boardPass.setRegUser(user);
+				bPassRepo.save(boardPass);
+				return true;
+
+				
+				}
+				user.setPoints(user.getPoints() + (flight.getPrice()/10));
+				if(user.getPoints() >= 1000) {
+					VipUser upgradeUser = new VipUser(user);
+
+					vipURepo.save(upgradeUser);
+
+				}regURepo.save(user);
+				
+				return true;
+			}
+			
+		}
+		return false;
 	}
-	
-	
 	
 
 	/*
