@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 
@@ -23,10 +24,13 @@ public interface IAdminService {
 
 	Flight selectFlightById(int id) throws Exception;
 
-	boolean insertFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,
+	boolean insertFlight(Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity);
 
 	boolean updateFlightById(int id, Airport airportFrom, Airport airportTo, Collection<BoardingPass> allBoardingPasses,
-			Date departureDate, double flightDuration, int passengerCapacity, int seatsTaken);
+			LocalDateTime departureDate, double flightDuration, int passengerCapacity, int seatsTaken);
+
+	boolean updateFlightById(int id, Airport next, Airport next2, LocalDateTime departureDate, double flightDuration,
+			int passengerCapacity);
 	
 }

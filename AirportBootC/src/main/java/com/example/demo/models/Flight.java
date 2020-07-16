@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,6 +18,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.example.demo.enums.Countries;
 
@@ -55,7 +59,8 @@ public class Flight{
 	private Collection<Airport> airportFromAndTo;
 	
 	@Column(name = "DepartureDate")
-	private Date departureDate;
+	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm", iso = ISO.DATE)
+	private LocalDateTime departureDate;
 	
 	
 	@Column(name = "FligthDuration")
@@ -69,6 +74,8 @@ public class Flight{
 	
 	private int vipSeatCounter = 1; 
 	private int regSeatCounter = 1;
+	
+	
 	
 	@Column(name = "Price")
 	@Min(0)
@@ -104,15 +111,27 @@ public class Flight{
 		regSeatCounter++;
 	}
 
-	public Flight(Collection<Airport> airportFromAndTo, Date departureDate, double flightDuration,
-			int passengerCapacity, @Min(0) double price) {
-		super();
+	public Flight(Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration, int passengerCapacity, double price) {
+		airportFromAndTo.add(airportFrom);
+		airportFromAndTo.add(airportTo);
+		this.departureDate = departureDate;
+		this.flightDuration = flightDuration;
+		this.passengerCapacity = passengerCapacity;
+		this.price = price;
+		seatsTaken = 0;
+	}
+	
+	public Flight(Collection<Airport> airportFromAndTo,LocalDateTime departureDate, double flightDuration, int passengerCapacity, double price) {
 		this.airportFromAndTo = airportFromAndTo;
 		this.departureDate = departureDate;
 		this.flightDuration = flightDuration;
 		this.passengerCapacity = passengerCapacity;
 		this.price = price;
+		seatsTaken = 0;
 	}
+
+
+
 
 
 	}

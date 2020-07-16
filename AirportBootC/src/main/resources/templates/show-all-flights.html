@@ -1,3 +1,36 @@
+
+                    
+                    
+                    
+                    
+<!--    ARVIS SHOW-ALL-FLIGHTS    NEEDS TO BE PUT IN A DIFFERENT HTML SHOW-ALL-FLIGHTS-ADMIN
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeleaf.org">
+
+<body>
+	<p> Flight list </p>
+	<table>
+	<tr th:each = "flight: ${innerObject}" >
+		<td>Flight id: </td><td th:text="${flight.getF_ID()}"> | </td> 
+		<!--  
+		<td>Airport From: </td>
+			<td>
+				<tr th:each = "flightAirport: ${flight.getAirportFromAndTo()}">
+					<td th:text = "${flightAirport.getAirportCode()}"></td>
+				</tr> 
+			</td>
+		-->
+		<td>Departure date: </td><td th:text="${flight.getDepartureDate()}"> | </td> 
+		<td>Flight duration: </td><td th:text="${flight.getFlightDuration()}"> | </td> 
+		<td>Price: </td><td th:text="${flight.getPrice()}"> | </td> 
+		<td>Seats taken: </td><td th:text="${flight.getSeatsTaken()}"> | </td> 
+		<td>/</td><td th:text="${flight.getPassengerCapacity()}"> | </td> 
+	
+	</tr>
+	</table>
+</body>
+  -->
+
 <html xmlns:th="http://www.thymeleaf.org">
 	<body>
 	
@@ -44,5 +77,6 @@
 	</table>-->
 
 	</body>
+
 
 </html>

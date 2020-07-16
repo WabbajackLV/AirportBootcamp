@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -124,7 +125,7 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public boolean insertFlight(Airport airportFrom, Airport airportTo, Date departureDate, double flightDuration,
+	public boolean insertFlight(Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity) {
 		// TODO Auto-generated method stub
 		return false;
@@ -132,8 +133,15 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public boolean updateFlightById(int id, Airport airportFrom, Airport airportTo,
-			Collection<BoardingPass> allBoardingPasses, Date departureDate, double flightDuration,
+			Collection<BoardingPass> allBoardingPasses, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity, int seatsTaken) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateFlightById(int id, Airport next, Airport next2, LocalDateTime departureDate, double flightDuration,
+			int passengerCapacity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
