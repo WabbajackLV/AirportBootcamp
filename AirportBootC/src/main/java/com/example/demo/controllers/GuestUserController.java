@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.models.RegisteredUser;
@@ -48,5 +49,27 @@ public class GuestUserController {
 		regUService.register(regU.getName(),regU.getSurname(),regU.getAge(),regU.getPhoneNumber(),regU.getEmail(),regU.getPassword());
 		return "display_form";
 	}
+	
+	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
+	public String getShowAllFlights(Model model)
+	{
+		model.addAttribute("innerObject", flightService.selectAllFlights());	
+		return "show-all-flights";//show-all-product-page.html
+		
+	}
+	
+	@GetMapping("/showAllFlights/{id}")//
+	public String getShowAllFlightsId(@PathVariable(name = "id")int id, Model model)
+	{
+	try {
+		model.addAttribute("innerObject",flightService.selectOneFlightById(id));
+		return("show-one-flight");
+		}
+	catch(Exception e)
+		{
+			return "error";
+		}
+	}
+	
 	
 }
