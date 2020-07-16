@@ -13,4 +13,6 @@ public interface IAirportRepo extends CrudRepository<Airport, Integer>{
 
 	void deleteByAirportCode(String airportCode);
 
+	Airport findByAirportCode(String airportCode);
+
 }
