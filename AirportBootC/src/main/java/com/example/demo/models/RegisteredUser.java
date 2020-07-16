@@ -87,6 +87,8 @@ public class RegisteredUser extends Person{
 		this.password = password;
 		this.role = role;
 	}
+
+
 	
 	
 

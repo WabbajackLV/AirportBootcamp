@@ -18,6 +18,7 @@
          -->    <td><span th:text="${innerObject.getDepartureDate()}"> Departure Date And Time </span></td>
              <td><span th:text="${innerObject.getFlightDuration()}"> Flight Duration </span></td>
               <td><span th:text="${innerObject.getPrice()}"> Price </span></td>
+               <td> <a th:href= "@{'http://localhost:8080/registeredUser/showAllFlights/'+${innerObject.f_ID}+'/bookFlight'}"> Book a flight </a></td>
         </tr>
     </tbody>
 </table>
