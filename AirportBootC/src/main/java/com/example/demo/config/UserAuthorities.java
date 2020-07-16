@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,13 +36,13 @@ public class UserAuthorities {
 	@Column(name="RoleName")
 	private String roleName;
 	
-	@OneToMany(mappedBy="role")
+	@OneToMany(mappedBy="role",fetch = FetchType.EAGER)
 	private Collection<RegisteredUser> regUsers;
 
 	public UserAuthorities(String role) {
 		super();
 		this.roleName = role;
-		regUsers=new ArrayList();
+		regUsers=new ArrayList<>();
 	}
 	public void addUserToRole(RegisteredUser regU) {
 		

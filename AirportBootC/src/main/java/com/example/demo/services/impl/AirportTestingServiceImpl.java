@@ -1,7 +1,9 @@
 package com.example.demo.services.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -85,6 +87,10 @@ PasswordEncoder password;
 		airRepo.save(air3);
 		Airport air2=new Airport(Countries.Albania,22);
 		airRepo.save(air2);
+		Airport air4 = new Airport(Countries.Finland,4);
+		airRepo.save(air4);
+		Airport air5=new Airport(Countries.Poland,5);
+		airRepo.save(air5);
 		//System.out.println(air2);
 		
 		Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),null,1.5,77,90.9);
@@ -94,6 +100,17 @@ PasswordEncoder password;
 		airRepo.save(air3);
 		air2.getFlights().add(f1);
 		airRepo.save(air2);
+		
+		Flight f2=new Flight(new ArrayList<>(Arrays.asList(air4,air5)),null,2.5,100,50);
+		flightRepo.save(f2);
+		System.out.println(f2);
+		air4.getFlights().add(f2);
+		airRepo.save(air4);
+		air5.getFlights().add(f2);
+		airRepo.save(air5);
+		
+		
+		
 	}
 
 
