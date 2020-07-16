@@ -106,8 +106,19 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		return false;
 	}*/
 	
+	@Override
+	public int bookFlightCustEmail(String email)throws Exception {
+			if(regURepo.existsByEmail(email)) {
+				int id= regURepo.findByEmail(email).getRu_id();
+				//RegisteredUser regUser = regURepo.findById(id).get();
+				 return id;
+			}
+		
+		throw new Exception("There is no customer with specific id in the System");
+	}
+	
 	@Override 
-	public boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses) {
+	public boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses,RegisteredUser regU) {
 		if(id > 0) {
 			if(regURepo.existsById(id)) {
 				RegisteredUser user = regURepo.findById(id).get();
@@ -189,6 +200,8 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no registered user with specific id in the System");
 	}
+
+
 
 	
 	}

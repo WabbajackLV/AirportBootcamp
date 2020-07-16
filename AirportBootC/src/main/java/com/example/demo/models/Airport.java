@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -60,6 +61,7 @@ public class Airport {
 		this.country = country;
 		generateAirportCode();
 		airportCode += number;
+		flights= new ArrayList<Flight>();
 	}
 	
 	

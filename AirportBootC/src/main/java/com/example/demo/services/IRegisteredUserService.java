@@ -22,7 +22,9 @@ public interface IRegisteredUserService {
 
 	boolean getBoardingPass(BoardingPass bPass);
 
-	boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses);
+	int bookFlightCustEmail(String email)throws Exception;
+	
+	boolean bookFlight(int id, Flight flight,Collection<BoardingPass> purchasedBoardingPasses,RegisteredUser regU);
 
 	RegisteredUser selectOneRegisteredUserById(int id)throws Exception;
 
