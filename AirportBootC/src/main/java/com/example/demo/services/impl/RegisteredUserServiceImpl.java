@@ -60,7 +60,11 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		{
 			if(flightRepo.existsById(id))
 			{
-				return flightRepo.findById(id).get();		
+				Flight flight=flightRepo.findById(id).get();
+				BoardingPass bPass = new BoardingPass(flight, null);
+				bPassRepo.save(bPass);
+				return flight;	
+				
 			}
 		}
 		throw new Exception("Id is not correct and there is not product in the system");
@@ -110,7 +114,8 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 	public int bookFlightCustEmail(String email)throws Exception {
 			if(regURepo.existsByEmail(email)) {
 				int id= regURepo.findByEmail(email).getRu_id();
-				//RegisteredUser regUser = regURepo.findById(id).get();
+				RegisteredUser regUser = regURepo.findById(id).get();
+				//regUser.getBoardingPasses().add(bPass);
 				 return id;
 			}
 		

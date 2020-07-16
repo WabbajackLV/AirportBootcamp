@@ -14,6 +14,7 @@ import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.services.IFlightService;
 
 @Service
@@ -27,6 +28,8 @@ public class FlightServiceImpl implements IFlightService{
 	
 	@Autowired
 	IAirportRepo airRepo;
+	@Autowired
+	IRegisteredUserRepo regURepo;
 	
 	@Override
 	public boolean updateFlightById(int id, Airport apFrom, Airport apTo,Collection<BoardingPass> allBoardingPasses, LocalDateTime departure, double duration, int capacity, int seatsTaken) {
@@ -135,6 +138,12 @@ public class FlightServiceImpl implements IFlightService{
 			}
 		}
 		throw new Exception("Id is not correct and there is not product in the system");
+	}
+
+	@Override
+	public Flight addOneFlightById(int id) {
+	
+		return flightRepo.findById(id).get();	
 	}
 
 	
