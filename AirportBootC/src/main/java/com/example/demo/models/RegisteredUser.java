@@ -47,9 +47,13 @@ public class RegisteredUser extends Person{
 	@JoinColumn(name="U_ID")
 	private UserAuthorities role;  
 
+ 
+	@OneToMany(mappedBy="regU")
+	private Collection<Flight> allRegUFlights;
 	
 	@OneToMany(mappedBy="regUser")
 	private Collection<BoardingPass> boardingPasses;
+	
 	
 	@OneToOne(mappedBy="regUser")
 	private VipUser vipUser;

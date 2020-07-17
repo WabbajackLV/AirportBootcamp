@@ -36,6 +36,8 @@ public class UserAuthorities {
 	@Column(name="RoleName")
 	private String roleName;
 	
+	
+	@ToString.Exclude
 	@OneToMany(mappedBy="role",fetch = FetchType.EAGER)
 	private Collection<RegisteredUser> regUsers;
 

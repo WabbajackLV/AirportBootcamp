@@ -6,8 +6,13 @@
 	<table>
     <thead>
         <tr>
+
             <th> Airport From  </th> 
             <th> Airport To  </th> 
+
+            <th> Airport From </th>
+            <th> Airport To </th>
+
             <th> Departure Date And Time </th>
             <th> Flight Duration </th>
             <th> Price </th>
@@ -15,9 +20,11 @@
     </thead>
     <tbody>
     <tr>
+
             <td><span th:text="${innerObject.getAirportFrom()}"> Airport from </span></td>
          	<td><span th:text="${innerObject.getAirportTo()}"> Airport To </span></td>
              <td><span th:text="${innerObject.getDepartureDate()}"> Departure Date And Time </span></td>
+
              <td><span th:text="${innerObject.getFlightDuration()}"> Flight Duration </span></td>
               <td><span th:text="${innerObject.getPrice()}"> Price </span></td>
                <td> <a th:href= "@{'http://localhost:8080/registeredUser/showAllFlights/'+${innerObject.f_ID}+'/bookFlight'}"> Book a flight </a></td>
