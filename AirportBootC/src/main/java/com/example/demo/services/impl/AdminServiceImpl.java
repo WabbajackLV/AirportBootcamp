@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Service;
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.models.RegisteredUser;
 import com.example.demo.repos.IAdminRepo;
+import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.services.IAdminService;
 import com.example.demo.services.IFlightService;
 
@@ -27,6 +31,14 @@ public class AdminServiceImpl implements IAdminService {
 	
 	@Autowired
 	IFlightRepo flightRepo;
+	
+	@Autowired
+	IAirportRepo airRepo;
+	
+	@Autowired
+	IRegisteredUserRepo regUserRepo;
+	
+	
 
 
 	@Override
@@ -97,19 +109,38 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public boolean deleteFlightById(int id) {
-		if(id > 0 )
-		{
-			for(int i=0;i<IAdminRepo.allFlights.size();i++)
-			{
-				if(IAdminRepo.allFlights.get(i).getF_ID() == id)
-				{
-					IAdminRepo.allFlights.remove(id);
-					return true;
-				}
-			}
+		if(flightRepo.existsById(id)) {
+			//ArrayList<Airport> airTemp = (ArrayList<Airport>) flightRepo.findById(id).get().getAirportFromAndTo();
+			
+			
+			
+			Flight tempF = flightRepo.findById(id).get();
+			Iterator<Airport> newIter = tempF.getAirportFromAndTo().iterator();
+			RegisteredUser user = tempF.getRegU();
+			user.deleteFlightFromRegUser(id);
+			regUserRepo.save(user);
+			
+			
+			
+			Airport airportFrom = airRepo.findByAirportCode(newIter.next().getAirportCode());
+			Airport airportTo = airRepo.findByAirportCode(newIter.next().getAirportCode());
+			
+			airportFrom.deleteOneFlightInAirport(id);
+			airportTo.deleteOneFlightInAirport(id);
+			
+			System.out.println("INFO TEXT" + airportFrom.getFlights());
+			
+			airRepo.save(airportFrom);
+			airRepo.save(airportTo);
+			
+			
+			flightRepo.deleteById(id);
+			return true;
 		}
 		return false;
 	}
+	
+	
 
 	@Override
 	public void seeStatistics() {
