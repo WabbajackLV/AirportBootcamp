@@ -15,6 +15,8 @@ public interface IFlightRepo extends CrudRepository<Flight, Integer>{
 
 	ArrayList<Flight> findByRegU(RegisteredUser regUser);
 
+	Flight findByFlightDurationAndPriceAndPassengerCapacity(double flightDuration, double price, int passengerCapacity);
+
 	//ArrayList<Flight> findByRegUserEmail(String email);
 
 

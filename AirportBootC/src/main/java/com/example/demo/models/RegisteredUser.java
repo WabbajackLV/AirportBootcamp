@@ -42,19 +42,19 @@ public class RegisteredUser extends Person{
 	private double points;
 	
 	private String password;
-	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name="U_ID")
 	private UserAuthorities role;  
 
- 
+	@ToString.Exclude
 	@OneToMany(mappedBy="regU")
 	private Collection<Flight> allRegUFlights;
-	
+	@ToString.Exclude
 	@OneToMany(mappedBy="regUser")
 	private Collection<BoardingPass> boardingPasses;
 	
-	
+	@ToString.Exclude
 	@OneToOne(mappedBy="regUser")
 	private VipUser vipUser;
 

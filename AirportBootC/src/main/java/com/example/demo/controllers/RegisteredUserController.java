@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
@@ -86,6 +87,9 @@ public class RegisteredUserController {
 			}
 	}
 	
+
+	
+	
 	@GetMapping("/showMyFlights/{id}")
 	public String getShowMyFlightsByRegUId(@PathVariable(name="id")int id,Model model)
 	{
@@ -93,7 +97,7 @@ public class RegisteredUserController {
 			model.addAttribute("innerObjectFlight",regUService.getAllFlightsByRUId(id));
 			//model.addAttribute("innerObjectFlight", boardPService.getFlightById(id));
 			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
-			return "show-all-bookings";
+			return "show-all-my-flights";
 			}
 		catch(Exception e)
 			{
@@ -121,7 +125,8 @@ public class RegisteredUserController {
 			e.printStackTrace();
 			return "error";
 		}
-		return "redirect:/registeredUser/showMyFlights/"+idU;
+		//return "redirect:/registeredUser/showMyBookings/"+idU;
+		return "redirect:/registeredUser/buy/"+idU;
 	}
 	
 	
@@ -139,5 +144,41 @@ public class RegisteredUserController {
 			return "error";
 		}
 	}*/
+	
+	@GetMapping("/buy/{id}")//localhost:8080/customer/buy/1
+	public String getBuyByRegUId(@PathVariable(name="id")int id,Model model,RegisteredUser registeredUser)
+	{
+	try {
+			
+			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
+		//	model.addAttribute("allRegUFlights", helperService.converterHelperForOne(flightService.selectAllFlights()));
+			model.addAttribute("allRegUFlights", flightService.selectAllFlights());
+			return "buy";
+			
+		} 
+	catch (Exception e) {
+		e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	
+	@PostMapping("/buy/{id}")
+	public String postBuyByRegUId(@PathVariable(name="id")int id, RegisteredUser registeredUser)
+	{
+	for(Flight fl:registeredUser.getAllRegUFlights())
+	
+	System.out.println(id);
+	try {
+		regUService.buyFlights(registeredUser.getAllRegUFlights(), id);
+		return "redirect:/registeredUser/showMyFlights/"+id;
+	} 
+	catch (Exception e) {
+	System.out.println(e);
+		return "error";
+	}	
+	}
+	
+	
 	
 	}

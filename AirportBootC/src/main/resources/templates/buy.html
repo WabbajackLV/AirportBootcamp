@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<form action="#" th:action =" @{/registeredUser/buy/__${id}__}" 
+	th:object = "${registeredUser}" method = "post">
+	
+	
+	<p th:text="'Hello ' +${innerObjectRegUName}+'! Please create Your booking list:' "></p>
+	
+	<table>
+	<tr>
+		<td> Flights available</td>
+		<td>
+		<select multiple="multiple" th:field = "*{allRegUFlights}">
+		<option th:each= "flight : ${allRegUFlights}" th:value="${flight.getF_ID()}"th:text="${flight.toString()}"></option>
+		
+		
+		</select>
+		
+		 </td>
+	
+	</tr>
+	
+	</table>
+	
+	<input type = "submit">
+	
+</form>
+
+</html>

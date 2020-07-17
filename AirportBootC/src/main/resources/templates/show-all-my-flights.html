@@ -8,22 +8,23 @@
 	
 	<table>
     <thead>
-        <tr>
-            <!-- <th> Airport From And To </th> -->
+    
+            <!-- <th> Airport From And To </th> 
             <th> Departure Date And Time </th>
             <th> Flight Duration </th>
-            <th> Price </th>
-        </tr>
+            <th> Price </th>-->
+       
     </thead>
     <tbody>
-        <tr th:each="flight: ${innerObjectFlight}">
+         <tr th:each="flight: ${innerObjectFlight}"> 
+       <td>  <span th:text="${flight.toString()}"></span></td>
          <!--    <td><span th:text="${flight.getAirportFromAndTo()}"> Airport From And To </span></td>
-         -->    <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
+            <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
              <td><span th:text="${flight.getFlightDuration()}"> Flight Duration </span></td>
               <td><span th:text="${flight.getPrice()}"> Price </span></td>
          
-              
-        </tr>
+            
+        </tr>  --> 
     </tbody>
 </table>
 
