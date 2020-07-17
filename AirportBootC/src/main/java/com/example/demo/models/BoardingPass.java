@@ -63,17 +63,17 @@ public class BoardingPass {
 		return false;
 	}
 	
-	/*public Seat generateSeat(Flight flight, RegisteredUser user) throws Exception {
-		if(user instanceof VipUser) {
+	public Seat generateSeat(Flight flight, RegisteredUser user) throws Exception {
+		/*if(user instanceof VipUser) {
 			int seatNumber = flight.getVipSeatCounter(); 
 			if(seatNumber <= flight.getVipCapacity()) {
 				Seat vipSeat = new Seat(seatNumber);
 				flight.takeOneVipSeat();
 				return vipSeat;
 			}else {
-				throw new Exception("All Vip seats taken");
+				//throw new Exception("All Vip seats taken");
 			}
-		}else {
+		}else {*/
 			int seatNumber = flight.getVipCapacity() + flight.getRegSeatCounter();
 			if(seatNumber <= flight.getPassengerCapacity()) {
 				Seat regularSeat = new Seat(seatNumber);
@@ -82,9 +82,9 @@ public class BoardingPass {
 			}else {
 				throw new Exception("All regular seats taken");
 			}
-		}
+		//}
 		
-	}*/
+	}
 
 
 	
