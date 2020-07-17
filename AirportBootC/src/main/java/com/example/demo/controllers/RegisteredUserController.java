@@ -86,19 +86,43 @@ public class RegisteredUserController {
 			}
 	}
 	
-	@GetMapping("/bookFlight/{id}")
+	
+	@GetMapping("/showAllFlights/{id}/bookFlight")
+	public String getEmail(@PathVariable(name="id")int id,RegisteredUser registeredUser)
+	{
+			return "enter-email";
+	}
+	
+	@PostMapping("/showAllFlights/{id}/bookFlight") 
+	public String postEmail(@PathVariable(name="id")int id,RegisteredUser registeredUser)
+	{int idU = 0;
+		/*if(result.hasErrors()) {
+			return "error";
+		}*/
+		try {
+			
+			idU=regUService.bookFlightCustEmail(registeredUser.getEmail());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "redirect:/registeredUser/showMyBookings/"+idU;
+	}
+	
+	
+	/*@GetMapping("/showAllFlights/{id}/bookFlight")
 	public String getBookFlightByRegUId(@PathVariable(name="id")int id,Model model,RegisteredUser regU)
 	{
 		try {
 			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
 			//model.addAttribute("innerObjectFlights", flightService.allFlightsFromAirportToAirport(airportFrom, airportTo));
-			return null;
+			return "book-flight";
 		}
 		catch(Exception e)
 			{
 			e.printStackTrace();
 			return "error";
 		}
-	}
+	}*/
 	
-}
+	}

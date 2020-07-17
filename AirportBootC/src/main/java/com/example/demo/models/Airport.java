@@ -65,6 +65,7 @@ public class Airport {
 		generateAirportCode();
 		flights = new ArrayList<Flight>();
 		airportCode += number;
+		flights= new ArrayList<Flight>();
 	}
 	
 	

@@ -28,7 +28,7 @@ public interface IFlightService {
 
 	Flight selectOneFlightById(int id)throws Exception;
 
-
+	Flight addOneFlightById(int id);
 
 
 
