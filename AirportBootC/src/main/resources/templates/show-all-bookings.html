@@ -8,15 +8,18 @@
 	
 	<table>
 	<tr th:each="boardingPass: ${innerObjectBoardPass}">
-	<p>Airports From and To</p>
+ <!-- 	<p>Airports From and To</p>
     <td th:text="${flight.getAirportFrom()}" />
     <td th:text="${flight.getAirportTo()}" />
      <p>Departure Date and Time</p>
     <td th:text="${flight.getDepartureDate()}" />
-     <p>Flight Duration</p>
-    <td th:text="${flight.getFlightDuration()}" />
-    <td th:text="${flight.getPassengerCapacity()}" />
-    <td th:text="${flight.getPrice()}" />
+     <p>Flight Duration</p>-->
+       <td th:text="${boardingPass.getFlight()}" />
+       <!--      <td th:text="${boardingPass.toString()}" />
+         <td th:text="${boardingPass.getFlight().getFlightDuration()}" />
+  <td th:text="${flight.getFlightDuration()}" />
+  <td th:text="${flight.getPassengerCapacity()}" />
+    <td th:text="${flight.getPrice()}" />-->
     
 </tr>
 	

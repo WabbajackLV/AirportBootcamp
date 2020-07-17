@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	
+	
+	
+	<p th:text="'Hello ' +${innerObjectRegUName}+'! Here is Your booked Flights list:' "></p>
+	<p></p>
+	
+	<table>
+    <thead>
+        <tr>
+            <!-- <th> Airport From And To </th> -->
+            <th> Departure Date And Time </th>
+            <th> Flight Duration </th>
+            <th> Price </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="flight: ${innerObjectFlight}">
+         <!--    <td><span th:text="${flight.getAirportFromAndTo()}"> Airport From And To </span></td>
+         -->    <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
+             <td><span th:text="${flight.getFlightDuration()}"> Flight Duration </span></td>
+              <td><span th:text="${flight.getPrice()}"> Price </span></td>
+         
+              
+        </tr>
+    </tbody>
+</table>
+
+	</body>
+
+</html>
