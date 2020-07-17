@@ -9,4 +9,6 @@ public interface IHelper {
 	
 	
 	ArrayList<FlightInformation> converterHelper();
+
+	FlightInformation converterHelperForOne(Flight flight);
 }

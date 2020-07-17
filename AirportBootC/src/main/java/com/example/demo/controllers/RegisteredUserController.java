@@ -62,7 +62,7 @@ public class RegisteredUserController {
 	public String getShowAllFlightsId(@PathVariable(name = "id")int id, Model model)
 	{
 	try {
-		model.addAttribute("innerObject",flightService.selectOneFlightById(id));
+		model.addAttribute("innerObject",helperService.converterHelperForOne(flightService.selectOneFlightById(id)));
 		return("show-one-flight");
 		}
 	catch(Exception e)

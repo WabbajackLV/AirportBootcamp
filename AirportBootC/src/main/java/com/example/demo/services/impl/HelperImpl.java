@@ -41,4 +41,18 @@ public class HelperImpl implements IHelper{
 		
 	}
 	
+	@Override
+	public FlightInformation converterHelperForOne(Flight flight) {
+		Iterator<Airport> iterObj = flight.getAirportFromAndTo().iterator();
+		
+		
+		Airport airportFrom = iterObj.next();
+		Airport airportTo = iterObj.next();
+		FlightInformation newInfo = new FlightInformation(flight.getF_ID(), airportFrom, airportTo, flight.getPrice(), flight.getDepartureDate(), flight.getFlightDuration(), flight.getPassengerCapacity(), flight.getSeatsTaken());
+		
+			return newInfo;	
+		}
+		
+		
+	
 }
