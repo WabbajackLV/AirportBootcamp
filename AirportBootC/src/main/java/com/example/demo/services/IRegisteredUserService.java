@@ -17,6 +17,8 @@ public interface IRegisteredUserService {
 	
 	ArrayList<BoardingPass> getAllBookingsByRUId(int id) throws Exception;
 	
+	ArrayList<Flight> getAllFlightsByRUId(int id) throws Exception;
+	
 	boolean bookFlight(Collection<BoardingPass> purchasedBoardingPasses,int id )throws Exception;
 	
 
@@ -29,6 +31,7 @@ public interface IRegisteredUserService {
 	RegisteredUser selectOneRegisteredUserById(int id)throws Exception;
 
 	boolean register(String name, String surname, int age, int phoneNumber, String email,String password);
+	boolean buyFlights(Collection<Flight> purchasedFlights, int id) throws Exception;
 
 	
 }

@@ -3,6 +3,7 @@ package com.example.demo.services.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,6 +55,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		return (ArrayList<Flight>) flightRepo.findAll();
 	}
 
+	BoardingPass boardingPass = new BoardingPass(null,null);
 	@Override
 	public Flight selectOneFlightById(int id) throws Exception {
 		if(id > 0 )
@@ -61,8 +63,8 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 			if(flightRepo.existsById(id))
 			{
 				Flight flight=flightRepo.findById(id).get();
-				BoardingPass bPass = new BoardingPass(flight, null);
-				bPassRepo.save(bPass);
+				boardingPass.setFlight(flight);
+				bPassRepo.save(boardingPass);
 				return flight;	
 				
 			}
@@ -115,7 +117,11 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 			if(regURepo.existsByEmail(email)) {
 				int id= regURepo.findByEmail(email).getRu_id();
 				RegisteredUser regUser = regURepo.findById(id).get();
-				//regUser.getBoardingPasses().add(bPass);
+				boardingPass.setRegUser(regUser);
+				regUser.getBoardingPasses().add(boardingPass);
+				
+				bPassRepo.save(boardingPass);
+				regURepo.save(regUser);
 				 return id;
 			}
 		
@@ -206,8 +212,47 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		throw new Exception("There is no registered user with specific id in the System");
 	}
 
+	@Override
+	public ArrayList<Flight> getAllFlightsByRUId(int id) throws Exception {
+		if(id>0) {
+			if(regURepo.existsById(id)) {
+				RegisteredUser regUser = regURepo.findById(id).get();
+				
+				ArrayList<Flight> purchasedFlights = flightRepo.findByRegU(regUser);
+				 return purchasedFlights;
+			}
+		}
+		throw new Exception("There is no customer with specific id in the System");
+	}
+/*
+	@Override
+	public boolean buyFlights(Collection<Flight> purchasedFlights, int id) throws Exception{
+		if(id > 0 )
+		{
+			if(regURepo.existsById(id))
+			{
+				
+				RegisteredUser regUser = regURepo.findById(id).get();
+				String email=regUser.getEmail();
+				for(Flight f:purchasedFlights)
+				{
+					int fid=f.getF_ID();
+					Flight fl = flightRepo.findById(fid);
+					fl.setRegU(regUser);;
+					flightRepo.save(fl);
+					return true;
+				}
+			}
+		}
+		throw new Exception("There is no customer with specific id in the System");
+	}
 
+	*/
 
-	
+	@Override
+	public boolean buyFlights(Collection<Flight> purchasedFlights, int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	}
 

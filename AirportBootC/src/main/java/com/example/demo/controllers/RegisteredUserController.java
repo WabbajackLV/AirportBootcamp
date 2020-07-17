@@ -86,6 +86,21 @@ public class RegisteredUserController {
 			}
 	}
 	
+	@GetMapping("/showMyFlights/{id}")
+	public String getShowMyFlightsByRegUId(@PathVariable(name="id")int id,Model model)
+	{
+		try {
+			model.addAttribute("innerObjectFlight",regUService.getAllFlightsByRUId(id));
+			//model.addAttribute("innerObjectFlight", boardPService.getFlightById(id));
+			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
+			return "show-all-bookings";
+			}
+		catch(Exception e)
+			{
+				return "error";
+			}
+	}
+	
 	
 	@GetMapping("/showAllFlights/{id}/bookFlight")
 	public String getEmail(@PathVariable(name="id")int id,RegisteredUser registeredUser)
@@ -106,7 +121,7 @@ public class RegisteredUserController {
 			e.printStackTrace();
 			return "error";
 		}
-		return "redirect:/registeredUser/showMyBookings/"+idU;
+		return "redirect:/registeredUser/showMyFlights/"+idU;
 	}
 	
 	

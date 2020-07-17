@@ -14,10 +14,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Table(name = "BoardingPassTable")
 @Entity
-@Getter	@Setter @NoArgsConstructor
+@Getter	@Setter @NoArgsConstructor @ToString
 public class BoardingPass {
 	
 	
