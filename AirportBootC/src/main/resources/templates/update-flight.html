@@ -35,8 +35,11 @@
 		<tr>
 			<th class="align-right">Flight date</th>
 			<!--  <td><input type = "date" th:field="*{departureDate}"></td> -->
-			<td th:text="${#dates.format(departureDate, 'dd.MM.yyyy')}"></td>
+			<td> <input type = "datetime-local" th:field="*{departureDate}"> </td>
 		</tr>
+			
+		
+		
 		
 		
 		<tr>

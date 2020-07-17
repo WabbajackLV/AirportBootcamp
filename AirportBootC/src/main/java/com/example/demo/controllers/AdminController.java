@@ -114,8 +114,8 @@ public class AdminController {
 	{
 		System.out.println(flightInformation);
 		System.out.println(adminService.updateFlightById(flightInformation.getF_ID(),flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity()));
-		if(adminService.updateFlightById(flightInformation.getF_ID(),flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity())) {
-			return "show-flight/{id}";
+		if(adminService.updateFlightById(id,flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity())) {
+			return "redirect:/registeredUser/showAllFlights/" + id;
 		}
 		return "update-flight";
 	}
