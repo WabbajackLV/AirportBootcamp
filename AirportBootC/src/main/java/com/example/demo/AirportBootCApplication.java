@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -58,7 +60,7 @@ public class AirportBootCApplication {
 			System.out.println(r1);
 			
 			
-			RegisteredUser r2=new RegisteredUser("Lili","Coal",14,27892789,"lili@gmail.com",password.encode("123"),userAuth);
+			RegisteredUser r2=new RegisteredUser("Lili","Coal",14,27892789,"user@gmail.com",password.encode("123"),userAuth);
 			UserAuthorities auth=uAuthRepo.findByRoleName("user");
 			auth.addUserToRole(r2);
 			uAuthRepo.save(auth);
@@ -82,9 +84,15 @@ public class AirportBootCApplication {
 			airRepo.save(air4);
 			Airport air5=new Airport(Countries.Poland,5);
 			airRepo.save(air5);
+			Airport air6 = new Airport(Countries.Russia,2);
+			airRepo.save(air6);
+			Airport air7=new Airport(Countries.Latvia,3);
+			airRepo.save(air7);
+			Airport air8=new Airport(Countries.Ukraine,10);
+			airRepo.save(air7);
 			//System.out.println(air2);
 			
-			Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),null,1.5,77,90.9);
+			Flight f1=new Flight(new ArrayList<>(Arrays.asList(air3,air2)),LocalDateTime.of(2020, 10, 26, 11, 30),1.5,77,90.9);
 			flightRepo.save(f1);
 			System.out.println(f1);
 			air3.getFlights().add(f1);
@@ -92,7 +100,33 @@ public class AirportBootCApplication {
 			air2.getFlights().add(f1);
 			airRepo.save(air2);
 			
-			Flight f2=new Flight(new ArrayList<>(Arrays.asList(air4,air5)),null,2.5,100,50);
+			
+			Flight f4=new Flight(new ArrayList<>(Arrays.asList(air7,air6)),LocalDateTime.of(2020, 9, 6, 15, 25),2.20,170,120);
+			flightRepo.save(f4);
+			System.out.println(f4);
+			air7.getFlights().add(f4);
+			airRepo.save(air7);
+			air6.getFlights().add(f4);
+			airRepo.save(air6);
+			
+			Flight f5=new Flight(new ArrayList<>(Arrays.asList(air8,air4)),LocalDateTime.of(2020, 11, 1, 5, 10),1.5,77,57);
+			flightRepo.save(f5);
+			System.out.println(f5);
+			air8.getFlights().add(f5);
+			airRepo.save(air8);
+			air4.getFlights().add(f5);
+			airRepo.save(air4);
+			
+			
+			Flight f3=new Flight(new ArrayList<>(Arrays.asList(air3,air5)),LocalDateTime.of(2020, 12, 5, 9, 00),4.0,200,150);
+			flightRepo.save(f3);
+			System.out.println(f3);
+			air3.getFlights().add(f3);
+			airRepo.save(air3);
+			air5.getFlights().add(f3);
+			airRepo.save(air5);
+			
+			Flight f2=new Flight(new ArrayList<>(Arrays.asList(air4,air5)),LocalDateTime.of(2021, 01, 7, 19, 00),2.5,100,50);
 			flightRepo.save(f2);
 			System.out.println(f2);
 			air4.getFlights().add(f2);

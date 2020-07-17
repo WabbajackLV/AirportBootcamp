@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<body>
 	
-	<form action="#" th:action =" @{/admin/newFlight2}" th:object = "${flightInformation}" method = "post">
+	<form action="#" th:action =" @{/admin/updateFlight/__${id}__}" th:object = "${flightInformation}" method = "post">
 	
 
 	<table>
@@ -33,26 +33,11 @@
 		
 		
 		<tr>
-			<th class="align-right">Start date</th>
+			<th class="align-right">Flight date</th>
 			<!--  <td><input type = "date" th:field="*{departureDate}"></td> -->
 			<td th:text="${#dates.format(departureDate, 'dd.MM.yyyy')}"></td>
 		</tr>
 		
-		<!--  
-		<tr>
-			<td>Take off time (hours): </td>
-			<td> <input type = "text"th:field="*{departureTimeHours}"> </td>
-			<td th:if="${#fields.hasErrors('departureTimeHours')}" th:errors="*{departureTimeHours}"></td>
-			
-		</tr>
-		
-		<tr>
-			<td>Take off time (minutes): </td>
-			<td> <input type = "text"th:field="*{departureTimeMinutes}"> </td>
-			<td th:if="${#fields.hasErrors('departureTimeMinutes')}" th:errors="*{departureTimeMinutes}"></td>
-			
-		</tr>
-		-->
 		
 		<tr>
 			<td>Please insert a Flight Duration</td>

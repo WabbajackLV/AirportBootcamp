@@ -36,12 +36,15 @@ public class Airport {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	@Column(name = "A_ID" )
+	@ToString.Exclude
 	private int a_ID;
 	
 	@Min(0)
+	@ToString.Exclude
 	int number;
 	
 	@Column(name = "Country")
+	@ToString.Exclude
 	private Countries country;
 	
 	@Column(name = "AirportCode")
@@ -60,6 +63,7 @@ public class Airport {
 		super();
 		this.country = country;
 		generateAirportCode();
+		flights = new ArrayList<Flight>();
 		airportCode += number;
 		flights= new ArrayList<Flight>();
 	}

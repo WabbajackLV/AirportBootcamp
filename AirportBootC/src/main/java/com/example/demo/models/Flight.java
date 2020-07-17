@@ -60,7 +60,7 @@ public class Flight{
 	private Collection<Airport> airportFromAndTo;
 	
 	@Column(name = "DepartureDate")
-	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm", iso = ISO.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm", iso = ISO.DATE)
 	private LocalDateTime departureDate;
 	
 	

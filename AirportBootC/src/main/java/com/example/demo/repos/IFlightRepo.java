@@ -12,13 +12,13 @@ import com.example.demo.models.RegisteredUser;
 
 public interface IFlightRepo extends CrudRepository<Flight, Integer>{
 
+
 	ArrayList<Flight> findByRegU(RegisteredUser regUser);
 
 	//ArrayList<Flight> findByRegUserEmail(String email);
 
+
 	
-
-
 	//ArrayList<Flight> findByRegisteredUser(RegisteredUser regU);
 	//ArrayList<Flight> findAllByAirportFromAndDepartureDate(Airport airportFrom, Date departureDate);
 
