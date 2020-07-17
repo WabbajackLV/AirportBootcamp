@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
+import com.example.demo.services.IHelper;
 import com.example.demo.services.IRegisteredUserService;
 
 @Controller
@@ -24,6 +25,9 @@ public class GuestUserController {
 	IFlightService flightService;
 	@Autowired
 	IBoardingPassService boardPService;
+
+	@Autowired
+	IHelper helperService;
 	
 	@GetMapping("/")
 	public String showHome(Model model) {
@@ -53,7 +57,7 @@ public class GuestUserController {
 	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
 	public String getShowAllFlights(Model model)
 	{
-		model.addAttribute("innerObject", flightService.selectAllFlights());	
+		model.addAttribute("innerObject", helperService.converterHelper());	
 		return "show-all-flights";//show-all-product-page.html
 		
 	}
