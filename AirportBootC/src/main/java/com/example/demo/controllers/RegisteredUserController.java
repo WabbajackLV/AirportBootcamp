@@ -97,6 +97,7 @@ public class RegisteredUserController {
 			model.addAttribute("innerObjectFlight",regUService.getAllFlightsByRUId(id));
 			//model.addAttribute("innerObjectFlight", boardPService.getFlightById(id));
 			model.addAttribute("innerObjectRegUName", regUService.selectOneRegisteredUserById(id).getName());
+			model.addAttribute("innerObjectRegU", regUService.selectOneRegisteredUserById(id).getRu_id());
 			return "show-all-my-flights";
 			}
 		catch(Exception e)

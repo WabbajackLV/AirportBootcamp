@@ -18,6 +18,8 @@
     <tbody>
          <tr th:each="flight: ${innerObjectFlight}"> 
        <td>  <span th:text="${flight.toString()}"></span></td>
+       <td> <a th:href= "@{'http://localhost:8080/registeredUser/showMyBookings/'+${innerObjectRegU}}"> get Boarding Pass </a></td>
+     
          <!--    <td><span th:text="${flight.getAirportFromAndTo()}"> Airport From And To </span></td>
             <td><span th:text="${flight.getDepartureDate()}"> Departure Date And Time </span></td>
              <td><span th:text="${flight.getFlightDuration()}"> Flight Duration </span></td>
@@ -27,7 +29,13 @@
         </tr>  --> 
     </tbody>
 </table>
+<button onclick="goBack()">Go Back</button>
 
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 	</body>
 
 </html>
