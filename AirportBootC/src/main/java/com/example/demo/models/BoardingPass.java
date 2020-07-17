@@ -27,17 +27,17 @@ public class BoardingPass {
 	@Setter(AccessLevel.NONE)
 	@Column(name = "B_ID")
 	private int b_ID;
-	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "RU_ID")
 	private RegisteredUser regUser;
-	
+	@ToString.Exclude
 	@Column(name = "Priority")
 	private boolean priority;
-	
+	@ToString.Exclude
 	@OneToOne(mappedBy="boardingPass")
 	private Seat seat;
-	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name="F_ID")
 	private Flight flight;

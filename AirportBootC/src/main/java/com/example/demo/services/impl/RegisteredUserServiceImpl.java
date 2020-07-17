@@ -224,7 +224,7 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		}
 		throw new Exception("There is no customer with specific id in the System");
 	}
-/*
+
 	@Override
 	public boolean buyFlights(Collection<Flight> purchasedFlights, int id) throws Exception{
 		if(id > 0 )
@@ -233,11 +233,11 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 			{
 				
 				RegisteredUser regUser = regURepo.findById(id).get();
-				String email=regUser.getEmail();
+				//String email=regUser.getEmail();
 				for(Flight f:purchasedFlights)
 				{
-					int fid=f.getF_ID();
-					Flight fl = flightRepo.findById(fid);
+					//int fid=f.getF_ID();
+					Flight fl = flightRepo.findByFlightDurationAndPriceAndPassengerCapacity(f.getFlightDuration(),f.getPrice(),f.getPassengerCapacity());
 					fl.setRegU(regUser);;
 					flightRepo.save(fl);
 					return true;
@@ -247,12 +247,12 @@ public class RegisteredUserServiceImpl implements IRegisteredUserService{
 		throw new Exception("There is no customer with specific id in the System");
 	}
 
-	*/
-
+	
+/*
 	@Override
 	public boolean buyFlights(Collection<Flight> purchasedFlights, int id) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 	}
 

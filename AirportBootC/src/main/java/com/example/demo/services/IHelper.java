@@ -11,4 +11,6 @@ public interface IHelper {
 	ArrayList<FlightInformation> converterHelper();
 
 	FlightInformation converterHelperForOne(Flight flight);
+
+	//FlightInformation converterHelperForOne(ArrayList<Flight> selectAllFlights);
 }
