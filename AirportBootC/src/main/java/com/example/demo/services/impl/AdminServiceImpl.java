@@ -12,27 +12,26 @@ import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IAdminRepo;
+import com.example.demo.repos.IFlightRepo;
 import com.example.demo.services.IAdminService;
+import com.example.demo.services.IFlightService;
 
 @Service
 public class AdminServiceImpl implements IAdminService {
 	
 	@Autowired
 	IAdminRepo adminRepo;
+	
+	@Autowired
+	IFlightService flightService;
+	
+	@Autowired
+	IFlightRepo flightRepo;
 
 
 	@Override
 	public Flight selectFlightById(int id) throws Exception{
-		if(id > 0 )
-		{
-			for(int i=0;i<IAdminRepo.allFlights.size();i++)
-			{
-				if(IAdminRepo.allFlights.get(i).getF_ID() == id)
-					return IAdminRepo.allFlights.get(i);
-				
-			}
-		}
-		throw new Exception("There is no Flight with this id in the system");
+		return flightService.selectOneFlightById(id);
 	}
 	
 	/*
@@ -131,18 +130,24 @@ public class AdminServiceImpl implements IAdminService {
 		return false;
 	}
 
-	@Override
-	public boolean updateFlightById(int id, Airport airportFrom, Airport airportTo,
-			Collection<BoardingPass> allBoardingPasses, LocalDateTime departureDate, double flightDuration,
-			int passengerCapacity, int seatsTaken) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public boolean updateFlightById(int id, Airport next, Airport next2, LocalDateTime departureDate, double flightDuration,
+	public boolean updateFlightById(int id, Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity) {
-		// TODO Auto-generated method stub
+		System.out.println("ID-" + id);
+		if(flightRepo.existsById(id)) {
+			Flight updateFlight = flightRepo.findById(id).get();
+			Collection<Airport> toAndFrom = new ArrayList<Airport>();
+			toAndFrom.add(airportFrom);
+			toAndFrom.add(airportTo);
+			
+			updateFlight.setAirportFromAndTo(toAndFrom);
+			updateFlight.setDepartureDate(departureDate);
+			updateFlight.setFlightDuration(flightDuration);
+			updateFlight.setPassengerCapacity(passengerCapacity);
+			flightRepo.save(updateFlight);
+			return true;
+		}
 		return false;
 	}
 

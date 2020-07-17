@@ -33,14 +33,18 @@ public class FlightServiceImpl implements IFlightService{
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
 				Flight flightToUpdate = flightRepo.findById(id).get();
-				//flightToUpdate.setAirportFrom(apFrom);
-				//flightToUpdate.setAirportTo(apTo);
+				
+				Collection<Airport> newCollection = new ArrayList<Airport>();
+				newCollection.add(apFrom);
+				newCollection.add(apTo);
+				flightToUpdate.setAirportFromAndTo(newCollection);
+				
 				flightToUpdate.setBoardingPasses(allBoardingPasses);
 				flightToUpdate.setDepartureDate(departure);
 				flightToUpdate.setFlightDuration(duration);
 				flightToUpdate.setPassengerCapacity(capacity);
 				flightToUpdate.setSeatsTaken(seatsTaken);
-				//flightRepo.save(flightToUpdate);
+				flightRepo.save(flightToUpdate);
 				
 				return true;
 			}
@@ -53,14 +57,15 @@ public class FlightServiceImpl implements IFlightService{
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
 				Flight flightToUpdate = flightRepo.findById(id).get();
-				//flightToUpdate.setAirportFrom(flight.getAirportFrom());
-				//flightToUpdate.setAirportTo(flight.getAirportTo());
+		
+				flightToUpdate.setAirportFromAndTo(flight.getAirportFromAndTo());
+				
 				flightToUpdate.setBoardingPasses(flight.getBoardingPasses());
 				flightToUpdate.setDepartureDate(flight.getDepartureDate());
 				flightToUpdate.setFlightDuration(flight.getFlightDuration());
 				flightToUpdate.setPassengerCapacity(flight.getPassengerCapacity());
 				flightToUpdate.setSeatsTaken(flight.getSeatsTaken());
-				//flightRepo.save(flightToUpdate);
+				flightRepo.save(flightToUpdate);
 				
 				return true;
 			}

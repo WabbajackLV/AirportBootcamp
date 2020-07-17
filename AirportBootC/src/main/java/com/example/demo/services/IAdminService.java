@@ -27,10 +27,8 @@ public interface IAdminService {
 	boolean insertFlight(Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity);
 
-	boolean updateFlightById(int id, Airport airportFrom, Airport airportTo, Collection<BoardingPass> allBoardingPasses,
-			LocalDateTime departureDate, double flightDuration, int passengerCapacity, int seatsTaken);
 
-	boolean updateFlightById(int id, Airport next, Airport next2, LocalDateTime departureDate, double flightDuration,
+	boolean updateFlightById(int id, Airport airportFrom, Airport airportTo, LocalDateTime departureDate, double flightDuration,
 			int passengerCapacity);
 	
 }

@@ -3,10 +3,12 @@ package com.example.demo.controllers;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.validation.Valid;
 
 import org.apache.catalina.LifecycleListener;
+import org.hibernate.cfg.FkSecondPass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import com.example.demo.models.Flight;
 import com.example.demo.services.IAdminService;
 import com.example.demo.services.IAirportService;
 import com.example.demo.services.IFlightService;
+import com.example.demo.services.IHelper;
 import com.example.demo.utils.FlightInformation;
 
 @Controller
@@ -35,11 +38,14 @@ public class AdminController {
 	
 	@Autowired
 	IAirportService airportService;
+	
+	@Autowired
+	IHelper helperService;
 
-	@GetMapping("/showAllFlights")
+	@GetMapping("/showAllFlightsAdmin")
 	public String getShowAllFlightsAdmin(Model model) {
-		model.addAttribute("innerObject", flightService.selectAllFlights());
-		return "show-all-flights";
+		model.addAttribute("innerObject", helperService.converterHelper());
+		return "show-all-flights-admin";
 	}
 	
 	
@@ -77,35 +83,41 @@ public class AdminController {
 		}
 		*/
 		flightService.createNewFlight(flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity(), flightInformation.getPrice());
-		return "redirect:/admin/showAllFlights";
+		return "redirect:/admin/showAllFlightsAdmin";
 	}
 	
 	
 	
 	
 	@GetMapping("/updateFlight/{id}")
-	public String getUpdateFlightById(@PathVariable(name="id")int id,Model model,Flight flight)
+	public String getUpdateFlightById(@PathVariable(name="id")int id,Model model,FlightInformation	flightInformation)
 	{
 		try {
+	
 			Flight flightForUpdate = adminService.selectFlightById(id);
-			model.addAttribute("flight", flightForUpdate);
-			return "update";
+			System.out.println("flightFroUpdate ==> " + flightForUpdate.getF_ID());
+			Iterator<Airport> newIter = flightForUpdate.getAirportFromAndTo().iterator();
+			FlightInformation newInfo = new FlightInformation(flightForUpdate.getF_ID(), newIter.next(), newIter.next(), flightInformation.getPrice(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity(), flightInformation.getSeatsTaken());
+			model.addAttribute("flightInformation", newInfo);
+			model.addAttribute("airports", airportService.getAllAirports());
+			System.out.println("toString - " + newInfo.toString());
+			return "update-flight";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "error";
 		}
 	}
 	
 	
 	@PostMapping("/updateFlight/{id}")//it will be called when SUBMIT button is pressed
-	public String postUpdateProductById(@PathVariable(name = "id")int id,Flight flight)
+	public String postUpdateFlightById(@PathVariable(name = "id")int id, FlightInformation	flightInformation)
 	{
-		System.out.println(flight);
-		System.out.println(id);		
-		
-		if(adminService.updateFlightById(id, flight.getAirportFromAndTo().iterator().next(), flight.getAirportFromAndTo().iterator().next(), flight.getDepartureDate(), flight.getFlightDuration(), flight.getPassengerCapacity())) {
+		System.out.println(flightInformation);
+		System.out.println(adminService.updateFlightById(flightInformation.getF_ID(),flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity()));
+		if(adminService.updateFlightById(flightInformation.getF_ID(),flightInformation.getAirportFrom(), flightInformation.getAirportTo(), flightInformation.getDepartureDate(), flightInformation.getFlightDuration(), flightInformation.getPassengerCapacity())) {
 			return "show-flight/{id}";
 		}
-		return "update";
+		return "update-flight";
 	}
 	
 	

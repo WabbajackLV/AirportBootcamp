@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
+import com.example.demo.services.IHelper;
 import com.example.demo.services.IRegisteredUserService;
 
 @Controller
@@ -26,6 +27,8 @@ public class RegisteredUserController {
 	IFlightService flightService;
 	@Autowired
 	IBoardingPassService boardPService;
+	@Autowired
+	IHelper helperService;
 	
 	
 	/*@GetMapping("/register")//localhost:8080/registeredUser/register
@@ -50,7 +53,7 @@ public class RegisteredUserController {
 	@GetMapping("/showAllFlights")//localhost:8080/registeredUser/showAllFlights
 	public String getShowAllFlights(Model model)
 	{
-		model.addAttribute("innerObject", flightService.selectAllFlights());	
+		model.addAttribute("innerObject", helperService.converterHelper());	
 		return "show-all-flights";//show-all-product-page.html
 		
 	}
