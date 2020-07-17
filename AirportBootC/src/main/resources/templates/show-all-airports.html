@@ -1,0 +1,13 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeleaf.org">
+
+<body>
+	<p> Airport list </p>
+	<table>
+	<tr th:each = "airport: ${innerObject}" >
+		<td>Country: </td><td th:text="${airport.getCountry()}"></td><td> | </td>
+		<td>Airport code: </td><td th:text="${airport.getAirportCode()}"></td><td> | </td>
+	</tr>
+	</table>
+</body>

@@ -26,6 +26,9 @@ import com.example.demo.services.IFlightService;
 import com.example.demo.services.IHelper;
 import com.example.demo.utils.FlightInformation;
 
+
+
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -48,7 +51,7 @@ public class AdminController {
 		return "show-all-flights-admin";
 	}
 	
-	
+	/*
 	@GetMapping("/newFlight")//url address -> localhost:8080/admin/newFlight
 	public String getNewFlight(Flight flight){
 		return "new-flight";//new-flight.html
@@ -65,12 +68,14 @@ public class AdminController {
 		flightService.createNewFlight(airports.get(0), airports.get(1), flight.getDepartureDate(), flight.getFlightDuration(), flight.getPassengerCapacity(), flight.getPrice());
 		return "redirect:/admin/showAllFlightsAdmin";
 	}
+	*/
 	
 	@GetMapping("/newFlight2")
 	public String getNewFlight2(FlightInformation flightInformation, Model model){
 		model.addAttribute("airports", airportService.getAllAirports());
 		return "new-flight2";
 	}
+	
 	
 	@PostMapping("/newFlight2")//it will be called when SUBMIT button is pressed
 	public String postNewFlight2(FlightInformation flightInformation, BindingResult result)
@@ -119,6 +124,51 @@ public class AdminController {
 		}
 		return "update-flight";
 	}
+	
+	
+	@GetMapping("/deleteFlight/{id}")
+	public String getDeleteFlightById(@PathVariable(name = "id") int id, Model model, Flight flight) {
+		System.out.println("ID IN GETMAPPING" + id);
+		adminService.deleteFlightById(id);
+		model.addAttribute("innerObject", flightService.selectAllFlights());
+		return "show-all-flights-admin";
+		
+		
+	}
+	
+	
+	@GetMapping("/showAllAirports")
+	public String getShowAllAirports(Model model) {
+		model.addAttribute("innerObject", airportService.getAllAirports());
+		return "show-all-airports";
+	}
+	
+	@GetMapping("/newAirport")
+	public String getNewAirport(Airport airport) {
+		
+		return "new-airport";
+	}
+	
+	@PostMapping("/newAirport")
+	public String postNewAirport(@Valid Airport airport, BindingResult result) {
+		/*
+		if(result.hasErrors()) {
+			return "insert-one-product-page";
+		}
+		*/
+		airportService.insertNewAirport(airport.getCountry(), airport.getNumber());
+		return "redirect:/admin/showAllAirports";
+	}
+	
+	@GetMapping("/deleteAirport/{id}")
+	public String getDeleteAirport(@PathVariable(name = "id") int id, Model model, Airport airport) {
+
+		airportService.deleteByAirportCode(airport.getAirportCode());
+		model.addAttribute("innerObject", airportService.getAllAirports());
+		return "show-all-airports";
+	}
+	
+	
 	
 	
 }

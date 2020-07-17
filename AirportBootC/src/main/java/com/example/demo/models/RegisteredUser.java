@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import java.util.Collection;
+import java.util.Iterator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -92,6 +94,20 @@ public class RegisteredUser extends Person{
 		this.role = role;
 	}
 
+	public boolean deleteFlightFromRegUser(int id) {
+		Iterator<Flight> newIter = allRegUFlights.iterator();
+		
+		while(newIter.hasNext()) {
+			Flight newF = newIter.next();
+			if(newF.getF_ID() == id) {
+				newF = null;
+				return true;
+				
+			}
+		}
+		
+		return false;
+	}
 
 	
 	

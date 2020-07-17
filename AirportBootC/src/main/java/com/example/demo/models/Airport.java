@@ -3,6 +3,7 @@ package com.example.demo.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -88,6 +89,20 @@ public class Airport {
 		this.airportCode = airportCode;
 	}
 	 */
+	
+	public boolean deleteOneFlightInAirport(int id) {
+		Iterator<Flight> newIter =  flights.iterator();
+		
+		while(newIter.hasNext()) {
+			Flight newF = newIter.next();
+			if(newF.getF_ID() == id) {
+				newF = null;
+				
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 	

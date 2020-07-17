@@ -1,0 +1,30 @@
+        <html xmlns:th="http://www.thymeleaf.org">
+<body>
+        <form action="#" th:action="@{/admin/newAirport}"
+                th:object="${airport}" method="post">
+                
+                <table>
+                	<tr>
+                		<td> Country of airport </td>
+                		<td>
+                		<select name = "country">
+                			<option th:each = "country : ${(T(com.example.demo.enums.Countries).values())}" th:value = "${country}" th:text = "${country}">
+                			</option>
+						</select>
+						<td>
+                	</tr>
+                	
+                	
+                	<tr>
+                		<td> Please insert airport number</td>
+                		<td> <input type="text" th:field="*{number}"> </td>
+                		<td th:if = "${#fields.hasErrors('number')}" th:errors = "*{number}"> </td>
+                	</tr>
+	
+                	
+                </table>
+               
+                <input type="submit">
+        </form>
+</body>
+</html>
